@@ -1,0 +1,5 @@
+FROM rasodu/nginxhttps:1.9.1
+
+#COPY htdocs /usr/share/nginx/html
+COPY public /usr/share/nginx/WEBAPP/public
+#RUN chmod -R 777 /usr/share/nginx/WEBAPP

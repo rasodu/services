@@ -1,0 +1,49 @@
+version: '2'
+services:
+    nodesocket:
+        image: rasodu/nodesocket:4.4.1
+        depends_on:
+            - redis
+        volumes_from:
+            - nginxhttp:ro
+        ports:
+            - "3000:3000"
+    redis:
+        image: redis:3.0.7
+        expose:
+            - "6379"
+    mysql:
+        image: mysql:5.6.28
+        expose:
+            - "3306"
+        ports:
+            - "3306:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=homestead
+            - MYSQL_USER=homestead
+            - MYSQL_PASSWORD=secret
+    phpfpm:
+        expose:
+            - "9000"
+    nginxhttps:
+        build:
+            context: .
+            dockerfile: docker/dockerfile/nginxhttps
+        volumes_from:
+            - nginxhttp:ro
+            - phpfpm:ro
+        ports:
+            - "443:443"
+    nginxhttp:
+        image: rasodu/nginxhttp:1.9.1
+        ports:
+            - "80:80"
+        volumes:
+            - etc-letsencrypt:/etc/letsencrypt
+volumes:
+    etc-letsencrypt:
+        driver: local
+networks:
+    default:
+        driver: bridge

@@ -1,0 +1,6 @@
+FROM rasodu/phpfpm:5.6.1
+
+#start everything specific to phpfpm
+COPY . /usr/share/nginx/WEBAPP
+RUN chown -R www-data:www-data /usr/share/nginx/WEBAPP && chmod -R 755 /usr/share/nginx/WEBAPP
+#end everything specific to phpfpm
