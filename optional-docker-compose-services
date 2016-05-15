@@ -1,0 +1,14 @@
+version: '2'
+services:
+    nodesocket:
+        image: rasodu/nodesocket:4.4.1
+        depends_on:
+            - redis
+        volumes_from:
+            - nginxhttp:ro
+        ports:
+            - "3000:3000"
+    redis:
+        image: redis:3.0.7
+        expose:
+            - "6379"
