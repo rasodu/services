@@ -24,7 +24,9 @@ services:
         ports:
             - "443:443"
     nginxhttp:
-        image: rasodu/nginxhttp:1.9.1
+        build:
+            context: .
+            dockerfile: docker/dockerfile/nginxhttp
         ports:
             - "80:80"
         volumes:

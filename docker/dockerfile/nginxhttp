@@ -1,0 +1,3 @@
+FROM rasodu/nginxhttp:1.9.1
+
+COPY docker/docker-config/letsencrypt-cli.ini /root/.config/letsencrypt/cli.ini
