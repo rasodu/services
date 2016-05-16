@@ -48,5 +48,16 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
 - *Note*: Not all services available during development are available in production. 's3mock' and 'cmd' will not be created during production. You should use S3 during production.
 
 ## How do I get SSL certificate for production server?
+```
+docker-machine ssh <production-machine-name>
+docker exec -it <projectname>_nginxhttp_1 /bin/bash
+/DLEMP/letsencrypt/bin/letsencrypt-auto --version
+/DLEMP/letsencrypt/bin/letsencrypt-auto certonly --agree-tos
+ln -sf /etc/letsencrypt/live/<domain>/privkey.pem /etc/letsencrypt/privkey.pem
+ln -sf /etc/letsencrypt/live/<domain>/fullchain.pem /etc/letsencrypt/fullchain.pem
+exit
+exit
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml restart nginxhttps
+```
 
 ## How do I scale my app in production?
