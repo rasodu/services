@@ -16,8 +16,8 @@ services:
             - "9000"
     nginxhttps:
         build:
-            context: .
-            dockerfile: docker/dockerfile/nginxhttps
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/nginxhttps
         volumes_from:
             - nginxhttp:ro
             - phpfpm:ro
@@ -25,8 +25,8 @@ services:
             - "443:443"
     nginxhttp:
         build:
-            context: .
-            dockerfile: docker/dockerfile/nginxhttp
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/nginxhttp
         ports:
             - "80:80"
         volumes:

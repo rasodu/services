@@ -8,3 +8,7 @@ docker/dockerfile/*
 public/phpunit-coverage/*
 #Avoid copying of data volume folders during production for faster image build time and to make sure that the initial data volume don't copy existing files(You data will still showup during development because project volume will overlay the files.)
 storage/app/*
+
+#DLEMP subdirectory installation files
+DLEMPFast/*
+!DLEMPFast/docker/docker-config/*

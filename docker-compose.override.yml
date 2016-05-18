@@ -8,7 +8,7 @@ services:
     phpfpm:
         image: rasodu/phpfpmdev:5.6.1
         volumes:
-            - .:/usr/share/nginx/WEBAPP
+            - ${DLEMPFAST_CONTEXT}:/usr/share/nginx/WEBAPP
     cmd:
         image: rasodu/cmd:5.6.1
         volumes_from:

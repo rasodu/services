@@ -5,8 +5,8 @@ services:
             - var-lib-mysql:/var/lib/mysql
     phpfpm:
         build:
-            context: .
-            dockerfile: docker/dockerfile/phpfpm
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/phpfpm
         volumes:
             - storage-app:/usr/share/nginx/WEBAPP/storage/app
 volumes:
