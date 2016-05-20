@@ -1,0 +1,6 @@
+version: '2'
+services:
+    redis: #Also turn off: nodesocket
+        image: redis:3.0.7
+        expose:
+            - "6379"

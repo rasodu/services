@@ -17,12 +17,21 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
 4. ```mkdir public```
 5. ```cp DLEMPFast/.dockerignore . && mkdir -p docker/docker-config && cp DLEMPFast/docker/docker-config/letsencrypt-cli.ini docker/docker-config/```
 6. Only if you want to use DLEMPFast for production(Optional): Set email and domain in 'letsencrypt-cli.ini'
-7. In you project's '.env'(and also to '.env.example' if it exist) file create following variables listed below :
+7. In you project's '.env'(and also to '.env.example' if it exist) file create following variables list :
     ```
-    DLEMPFAST_CONTEXT=../
+    COMPOSE_PROJECT_NAME=<your_project_name>
+    ```
+    ```
+    DLEMPFAST_CONTEXT=../../../
+    ```
+    ```
     DLEMPFAST_BASE_DIR=DLEMPFast/
+    ```
+    ```
     DLEMPFAST_CONFIG_DIR=DLEMPFast/
-    COMPOSE_FILE=DLEMPFast/docker-compose.yml;DLEMPFast/docker-compose.override.yml
+    ```
+    ```
+    COMPOSE_FILE=DLEMPFast/docker/composefile/network.yml;DLEMPFast/docker/composefile/phpfpm56.yml;DLEMPFast/docker/composefile/phpfpm56.override.yml;DLEMPFast/docker/composefile/nginx.yml;DLEMPFast/docker/composefile/mysql.yml;DLEMPFast/docker/composefile/s3mock.override.yml;DLEMPFast/docker/composefile/redis.yml;DLEMPFast/docker/composefile/nodesocket.yml;DLEMPFast/docker/composefile/beanstalkd.yml;DLEMPFast/docker/composefile/queue.yml
     ```
 8. Try to start server with ```docker-compose up -d``` command
 9. Once server starts successfully, commit changed files to your project.
@@ -30,7 +39,7 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
 ## How do I start development server?
 - ```docker-compose up -d``` : start development server
 - ```docker-compose stop``` : stop development server
-- ```docker-compose rm``` : remove containers
+- ```docker-compose down --rmi local -v``` : remove containers, networks, local images and volumes
 
 ## How do I customize nginx settings?
 

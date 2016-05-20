@@ -1,0 +1,7 @@
+version: '2'
+services:
+    webapp.dev:
+        image: rasodu/s3mock:0.2.1
+        command: -r /fakes3_root -p 4569 --hostname webapp.dev
+        ports:
+            - "4569:4569"

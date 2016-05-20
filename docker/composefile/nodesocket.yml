@@ -1,6 +1,6 @@
 version: '2'
 services:
-    nodesocket:
+    nodesocket: #requires 'redis' service
         image: rasodu/nodesocket:4.4.1
         depends_on:
             - redis
@@ -8,7 +8,3 @@ services:
             - nginxhttp:ro
         ports:
             - "3000:3000"
-    redis:
-        image: redis:3.0.7
-        expose:
-            - "6379"

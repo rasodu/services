@@ -1,0 +1,13 @@
+version: '2'
+services:
+    mysql:
+        image: mysql:5.6.28
+        expose:
+            - "3306"
+        ports:
+            - "3306:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=homestead
+            - MYSQL_USER=homestead
+            - MYSQL_PASSWORD=secret
