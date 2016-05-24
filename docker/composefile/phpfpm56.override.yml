@@ -3,10 +3,13 @@ services:
     phpfpm:
         build:
             context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/phpfpmdev56
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/56phpfpmdev
         volumes:
             - ${DLEMPFAST_CONTEXT}:/usr/share/nginx/WEBAPP
     cmd:
+        build:
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/56cmd
         image: rasodu/cmd:5.6.1
         volumes_from:
             - phpfpm

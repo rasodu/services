@@ -3,6 +3,6 @@ services:
     phpfpm:
         build:
             context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/phpfpm56
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/56phpfpm
         expose:
             - "9000"
