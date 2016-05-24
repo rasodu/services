@@ -37,7 +37,7 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
         DLEMPFAST_CONFIG_DIR=DLEMPFast/
         ```
         ```
-        COMPOSE_FILE=DLEMPFast/docker/composefile/network.yml;DLEMPFast/docker/composefile/phpfpm56.yml;DLEMPFast/docker/composefile/phpfpm56.override.yml;DLEMPFast/docker/composefile/nginx.yml;DLEMPFast/docker/composefile/mysql.yml;DLEMPFast/docker/composefile/s3mock.override.yml;DLEMPFast/docker/composefile/redis.yml;DLEMPFast/docker/composefile/nodesocket.yml;DLEMPFast/docker/composefile/beanstalkd.yml;DLEMPFast/docker/composefile/queue.yml
+        COMPOSE_FILE=DLEMPFast/docker/composefile/network.yml;DLEMPFast/docker/composefile/phpfpm56.yml;DLEMPFast/docker/composefile/phpfpm56.override.yml;DLEMPFast/docker/composefile/nginx.yml
         ```
     8. Try to start server with ```docker-compose up -d``` command
     9. Once server starts successfully, commit changed files to your project.
