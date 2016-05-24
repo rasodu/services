@@ -1,5 +1,10 @@
 FROM rasodu/phpfpm:5.6.1
 
+#start run customization script
+COPY docker/docker-config/php-customization /DLEMP/docker-config/php-customization
+RUN chmod +x /DLEMP/docker-config/php-customization/install.sh && /DLEMP/docker-config/php-customization/install.sh
+#end run customization script
+
 #start everything specific to phpfpm
 COPY . /usr/share/nginx/WEBAPP
 RUN chown -R www-data:www-data /usr/share/nginx/WEBAPP && chmod -R 755 /usr/share/nginx/WEBAPP

@@ -10,6 +10,5 @@ services:
         build:
             context: ${DLEMPFAST_CONTEXT}
             dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/56cmd
-        image: rasodu/cmd:5.6.1
         volumes_from:
             - phpfpm
