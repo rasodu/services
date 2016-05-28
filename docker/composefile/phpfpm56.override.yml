@@ -10,5 +10,8 @@ services:
         build:
             context: ${DLEMPFAST_CONTEXT}
             dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/56cmd
+        ports:
+            - "3002:3000"
+            - "3001:3001"
         volumes_from:
             - phpfpm

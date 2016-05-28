@@ -19,6 +19,7 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
 - Add DLEMPFast to your project
     1. ```cd <project-dir>```
     2. add '/DLEMPFast' and '/public/phpunit-coverage' to your project's '.gitignore'
+    3. add ```elixir.config.browserSync.proxy= "https://nginxhttps";``` to 'gulpfile.js'
     3. ```git clone https://github.com/rasodu/DLEMPFast.git DLEMPFast```
     4. ```mkdir public```
     5. ```cp DLEMPFast/.dockerignore . && mkdir -p docker/docker-config && cp DLEMPFast/docker/docker-config/letsencrypt-cli.ini docker/docker-config/```
