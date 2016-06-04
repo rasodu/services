@@ -11,20 +11,17 @@ Start DLEMP server with prebuilt docker images. This is much faster than buildin
 At this point we only support PHP 5.6. We will add support for PHP 7 once we think that we have iron out the kinks.
 
 ## How do I install this?
-- Create project
+- If you don't have an existing project, then create a new project
     1. ```docker-machine ssh default``` (Only if you are not on Linux machine)
     2. ```cd <project-dir>```
     3. ```docker run --rm -it -v $(pwd):/usr/share/nginx/WEBAPP rasodu/cmd:5.6.1 /bin/bash```
-    4. ```laravel new [new-project-dir]``` or ```composer create-project laravel/laravel=5.1.33 <new-project-dir|.>```
+    4. ```laravel new [new-project-dir]``` or ```composer create-project laravel/laravel=5.1.<*|33> <.|new-project-dir>```
 - Add DLEMPFast to your project
     1. ```cd <project-dir>```
-    2. add '/public/phpunit-coverage' to your project's '.gitignore'
-    3. add ```elixir.config.browserSync.proxy= "https://nginxhttps";``` to 'gulpfile.js'
-    3. ```git submodule add https://github.com/rasodu/DLEMPFast.git DLEMPFast```
-    4. ```mkdir public```
-    5. ```cp DLEMPFast/.dockerignore . && mkdir -p docker/docker-config && cp DLEMPFast/docker/docker-config/letsencrypt-cli.ini docker/docker-config/```
-    6. Only if you want to use DLEMPFast for production(Optional): Set email and domain in 'letsencrypt-cli.ini'
-    7. In you project's '.env'(and also to '.env.example' if it exist) file create following variables list :
+    2. ```git submodule add https://github.com/rasodu/DLEMPFast.git DLEMPFast```
+    3. ```mkdir public``` If it doesn't exist
+    4. ```cp DLEMPFast/.dockerignore . && mkdir -p docker/docker-config && cp DLEMPFast/docker/docker-config/letsencrypt-cli.ini docker/docker-config/```
+    5. In you project's '.env'(and also to '.env.example' if it exist) file create following variables list :
         ```
         COMPOSE_PROJECT_NAME=<your_project_name>
         ```
@@ -38,10 +35,16 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
         DLEMPFAST_CONFIG_DIR=DLEMPFast/
         ```
         ```
-        COMPOSE_FILE=DLEMPFast/docker/composefile/network.yml;DLEMPFast/docker/composefile/phpfpm56.yml;DLEMPFast/docker/composefile/phpfpm56.override.yml;DLEMPFast/docker/composefile/nginx.yml
+        COMPOSE_FILE=DLEMPFast/docker/composefile/phpfpm56.yml;DLEMPFast/docker/composefile/phpfpm56.override.yml;DLEMPFast/docker/composefile/nginx.yml
         ```
-    8. Try to start server with ```docker-compose up -d``` command
-    9. Once server starts successfully, commit changed files to your project.
+    6. Try to start server with ```docker-compose up -d``` command
+    7. Once server starts successfully, commit changed files to your project.
+- Optional installation steps
+    1. Add ```/public/phpunit-coverage``` to your project's '.gitignore' : If you will be generating phpunit code coverage.
+    2. add ```elixir.config.browserSync.proxy= "https://nginxhttps";``` to 'gulpfile.js' : If you want to use browser sync.
+    3. ```mkdir -p docker/docker-config && cp -a DLEMPFast/docker/docker-config/. docker/docker-config/``` : If you want to set custom config.
+    4. Set email and domain in 'letsencrypt-cli.ini' : Only if you want to use let's encrypt certificate during production for production(Optional):
+
 
 ## How do I start development server?
 - ```docker-compose up -d``` : start development server
