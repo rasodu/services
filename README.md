@@ -11,19 +11,42 @@ Start DLEMP server with prebuilt docker images. This is much faster than buildin
 At this point we only support PHP 5.6. We will add support for PHP 7 once we think that we have iron out the kinks.
 
 ## How do I install this?
-1. Download zip file for this project from github and unzip it on your disk
-2. Add '/public/phpunit-coverage' to your project's '.gitignore' file
-3. Copy 'docker/' folder to your project directory
-4. Copy three '\*.yml' at the root of this project to your project directory
-5. Copy '.dockerignore' to your project directory
-6. Set 'email' and 'domains' in 'docker/docker-config/letsencrypt-cli.ini'(If you don't want to start production server with this project, then you don't need set these values.)
-7. Try to start server with ```docker-compose up -d``` command
-8. Once server starts successfully, commit the files to your project.
+- Create project
+    1. ```docker-machine ssh default``` (Only if you are not on Linux machine)
+    2. ```cd <project-dir>```
+    3. ```docker run --rm -it -v $(pwd):/usr/share/nginx/WEBAPP rasodu/cmd:5.6.1 /bin/bash```
+    4. ```laravel new [new-project-dir]``` or ```composer create-project laravel/laravel=5.1.33 <new-project-dir|.>```
+- Add DLEMPFast to your project
+    1. ```cd <project-dir>```
+    2. add '/DLEMPFast' and '/public/phpunit-coverage' to your project's '.gitignore'
+    3. add ```elixir.config.browserSync.proxy= "https://nginxhttps";``` to 'gulpfile.js'
+    3. ```git clone https://github.com/rasodu/DLEMPFast.git DLEMPFast```
+    4. ```mkdir public```
+    5. ```cp DLEMPFast/.dockerignore . && mkdir -p docker/docker-config && cp DLEMPFast/docker/docker-config/letsencrypt-cli.ini docker/docker-config/```
+    6. Only if you want to use DLEMPFast for production(Optional): Set email and domain in 'letsencrypt-cli.ini'
+    7. In you project's '.env'(and also to '.env.example' if it exist) file create following variables list :
+        ```
+        COMPOSE_PROJECT_NAME=<your_project_name>
+        ```
+        ```
+        DLEMPFAST_CONTEXT=../../../
+        ```
+        ```
+        DLEMPFAST_BASE_DIR=DLEMPFast/
+        ```
+        ```
+        DLEMPFAST_CONFIG_DIR=DLEMPFast/
+        ```
+        ```
+        COMPOSE_FILE=DLEMPFast/docker/composefile/network.yml;DLEMPFast/docker/composefile/phpfpm56.yml;DLEMPFast/docker/composefile/phpfpm56.override.yml;DLEMPFast/docker/composefile/nginx.yml
+        ```
+    8. Try to start server with ```docker-compose up -d``` command
+    9. Once server starts successfully, commit changed files to your project.
 
 ## How do I start development server?
 - ```docker-compose up -d``` : start development server
 - ```docker-compose stop``` : stop development server
-- ```docker-compose rm``` : remove containers
+- ```docker-compose down --rmi local -v``` : remove containers, networks, local images and volumes
 
 ## How do I customize nginx settings?
 

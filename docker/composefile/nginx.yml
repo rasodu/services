@@ -1,0 +1,22 @@
+version: '2'
+services:
+    nginxhttps:
+        build:
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/nginxhttps
+        volumes_from:
+            - nginxhttp:ro
+            - phpfpm:ro
+        ports:
+            - "443:443"
+    nginxhttp:
+        build:
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/nginxhttp
+        ports:
+            - "80:80"
+        volumes:
+            - etc-letsencrypt:/etc/letsencrypt
+volumes:
+    etc-letsencrypt:
+        driver: local

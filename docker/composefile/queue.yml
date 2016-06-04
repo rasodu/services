@@ -1,0 +1,11 @@
+version: '2'
+services:
+    queue:
+        extends:
+            file: phpfpm56.yml
+            service: phpfpm
+        depends_on:
+            - beanstalkd
+        command: php artisan queue:listen --queue=high,default,low --timeout=60 --sleep=5 --tries=3
+        volumes_from:
+            - phpfpm

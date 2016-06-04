@@ -1,0 +1,8 @@
+version: '2'
+services:
+    phpfpm:
+        volumes:
+            - storage-app:/usr/share/nginx/WEBAPP/storage/app
+volumes:
+    storage-app:
+        driver: local

@@ -1,0 +1,8 @@
+version: '2'
+services:
+    mysql:
+        volumes:
+            - var-lib-mysql:/var/lib/mysql
+volumes:
+    var-lib-mysql:
+        driver: local

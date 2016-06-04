@@ -2,9 +2,13 @@
 .git*
 #Avoid copying as many Docker related files as you can in production that are not required to be copied to image during build process
 .dockerignore
-docker-*
-docker/dockerfile/*
+docker/*
+!docker/docker-config/*
 #Aviod copying of PHPUnit code coverage files to production
 public/phpunit-coverage/*
 #Avoid copying of data volume folders during production for faster image build time and to make sure that the initial data volume don't copy existing files(You data will still showup during development because project volume will overlay the files.)
 storage/app/*
+
+#DLEMPFast subdirectory installation files
+DLEMPFast/*
+!DLEMPFast/docker/docker-config/*
