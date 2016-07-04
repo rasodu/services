@@ -1,0 +1,4 @@
+version: '2'
+services:
+    cron:
+        image: rasodu/cron:3.4.1
