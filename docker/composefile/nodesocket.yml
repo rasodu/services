@@ -1,7 +1,7 @@
 version: '2'
 services:
     nodesocket: #requires 'redis' service
-        image: rasodu/nodesocket:4.4.1
+        image: rasodu/nodesocket:4.4.2
         depends_on:
             - redis
         volumes_from:
