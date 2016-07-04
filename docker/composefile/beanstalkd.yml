@@ -1,6 +1,6 @@
 version: '2'
 services:
     beanstalkd: #Also turn off: queue
-        image: schickling/beanstalkd
+        image: kusmierz/beanstalkd:v1.10.0
         expose:
             - "11300"
