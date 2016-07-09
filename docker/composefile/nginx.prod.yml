@@ -1,0 +1,18 @@
+version: '2'
+services:
+    nginxhttp:
+        volumes:
+            - acme-challenge:/DLEMP/letsencrypt/public/.well-known/acme-challenge
+    letsencrypt:
+        build:
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/letsencrypt
+        depends_on:
+            - nginxhttps
+        volumes_from:
+            - nginxhttp:rw
+        volumes:
+            - etc-letsencrypt:/etc/letsencrypt
+volumes:
+    acme-challenge:
+        driver: local
