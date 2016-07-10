@@ -40,7 +40,7 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
     6. Try to start server with ```docker-compose up -d``` command
     7. Once server starts successfully, commit changed files to your project.
 - Optional installation steps
-    1. Add ```/public/phpunit-coverage``` to your project's '.gitignore' : If you will be generating phpunit code coverage.
+    1. Add ```/public/phpunit-coverage``` and ```/public/app-documentation``` to your project's '.gitignore' : If you will be generating phpunit code coverage.
     2. add ```elixir.config.browserSync.proxy= "https://nginxhttps";``` to 'gulpfile.js' : If you want to use browser sync.
     3. ```mkdir -p docker/docker-config && cp -a DLEMPFast/docker/docker-config/. docker/docker-config/``` : If you want to set custom config.
     4. Set email and domain in 'letsencrypt-cli.ini' : Only if you want to use let's encrypt certificate during production for production(Optional):
