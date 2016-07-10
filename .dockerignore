@@ -4,8 +4,10 @@
 .dockerignore
 docker/*
 !docker/docker-config/*
-#Aviod copying of PHPUnit code coverage files to production
+#Avoid copying of PHPUnit code coverage files to production
 public/phpunit-coverage/*
+#Avoid copying of phpDocumentor files
+public/app-documentation/*
 #Avoid copying of data volume folders during production for faster image build time and to make sure that the initial data volume don't copy existing files(You data will still showup during development because project volume will overlay the files.)
 storage/app/*
 
