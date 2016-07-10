@@ -76,7 +76,7 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
 ## How do I get SSL certificate for production server?
 ```
 docker-machine ssh <production-machine-name>
-docker exec -it <projectname>_nginxhttp_1 /bin/bash
+docker run --rm -it -v etc-letsencrypt:/etc/letsencrypt -v acme-challenge:/DLEMP/letsencrypt/public/.well-known/acme-challenge <project-name>_letsencrypt /bin/bash
 /DLEMP/letsencrypt/bin/letsencrypt-auto --version
 /DLEMP/letsencrypt/bin/letsencrypt-auto certonly --agree-tos
 ln -sf /etc/letsencrypt/live/<domain>/privkey.pem /etc/letsencrypt/privkey.pem
