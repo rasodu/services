@@ -1,10 +1,11 @@
 version: '2'
 services:
     nodesocket: #requires 'redis' service
-        image: rasodu/nodesocket:4.4.2
+        image: rasodu/nodesocket:4.4.3
         depends_on:
+            - nginxhttps
             - redis
-        volumes_from:
-            - nginxhttp:ro
+        volumes:
+            - etc-letsencrypt:/etc/letsencrypt
         ports:
             - "3000:3000"

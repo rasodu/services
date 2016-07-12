@@ -3,7 +3,8 @@ ARG DLEMPFAST_CONFIG_DIR
 
 #start run customization script
 COPY ${DLEMPFAST_CONFIG_DIR}docker/docker-config/php-customization /DLEMP/docker-config/php-customization
-RUN chmod +x /DLEMP/docker-config/php-customization/install.sh && /DLEMP/docker-config/php-customization/install.sh
+RUN chmod +x /DLEMP/docker-config/php-customization/install.sh
+RUN /DLEMP/docker-config/php-customization/install.sh
 #end run customization script
 
 #start everything specific to phpfpm

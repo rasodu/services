@@ -1,4 +1,4 @@
-FROM rasodu/nginxhttps:1.9.2
+FROM rasodu/nginxhttps:1.9.3
 
 #COPY htdocs /usr/share/nginx/html
 COPY public /usr/share/nginx/WEBAPP/public
