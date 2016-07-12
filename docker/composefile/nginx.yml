@@ -11,7 +11,7 @@ services:
         volumes:
             - etc-letsencrypt:/etc/letsencrypt
     nginxhttp:
-        image: rasodu/nginxhttps:1.9.3
+        image: rasodu/nginxhttp:1.9.3
         ports:
             - "80:80"
 volumes:
