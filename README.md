@@ -73,6 +73,16 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
 - ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --no-deps <service-name>``` : to start single service
 - *Note*: Not all services available during development are available in production. 's3mock' and 'cmd' will not be created during production. You should use S3 during production.
 
+## Which optimization should you perform on your production Laravel website?
+```
+composer install --no-dev
+composer dump-autoload --optimize
+in .env file 'APP_ENV=production' and 'APP_DEBUG=false'
+php artisan optimize --force
+php artisan route:cache
+php artisan config:cache
+```
+
 ## How do I get SSL certificate for production server?
 ```
 docker-machine ssh <production-machine-name>
