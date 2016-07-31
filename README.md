@@ -17,25 +17,22 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
     3. ```docker run --rm -it -v $(pwd):/usr/share/nginx/WEBAPP rasodu/cmd:5.6.1 /bin/bash```
     4. ```laravel new [new-project-dir]``` or ```composer create-project laravel/laravel=5.1.<*|33> <.|new-project-dir>```
 - Add DLEMPFast to your project
-    1. ```cd <project-dir>```
-    2. ```git submodule add https://github.com/rasodu/DLEMPFast.git DLEMPFast```
+    1. ```docker run --rm -it -v $(pwd):/usr/share/nginx/WEBAPP rasodu/cmd:5.6.1 /bin/bash```
+    1. ```composer require rasodu/services:dev-master```
     3. ```mkdir public``` If it doesn't exist
-    4. ```cp DLEMPFast/.dockerignore . && mkdir -p docker/docker-config && cp DLEMPFast/docker/docker-config/letsencrypt-cli.ini docker/docker-config/```
+    4. ```mkdir -p docker/docker-config && cp vendor/rasodu/services/docker/docker-config/letsencrypt-cli.ini docker/docker-config/```
+    1. Copy ```.dockerignore``` file form ```rasodu/DLEMP``` to your project's root folder
     5. In you project's '.env'(and also to '.env.example' if it exist) file create following variables list :
         ```
         COMPOSE_PROJECT_NAME=<your_project_name>
-        ```
-        ```
-        DLEMPFAST_CONTEXT=../../../
-        ```
-        ```
-        DLEMPFAST_BASE_DIR=DLEMPFast/
-        ```
-        ```
-        DLEMPFAST_CONFIG_DIR=DLEMPFast/
-        ```
-        ```
-        COMPOSE_FILE=DLEMPFast/docker/composefile/phpfpm56.yml;DLEMPFast/docker/composefile/phpfpm56.override.yml;DLEMPFast/docker/composefile/nginx.yml
+
+        DLEMPFAST_CONTEXT=../../../../../
+
+        DLEMPFAST_BASE_DIR=vendor/rasodu/services/
+
+        DLEMPFAST_CONFIG_DIR=vendor/rasodu/services/
+
+        COMPOSE_FILE=vendor/rasodu/services/docker/composefile/phpfpm56.yml;vendor/rasodu/services/docker/composefile/phpfpm56.override.yml;vendor/rasodu/services/docker/composefile/nginx.yml
         ```
     6. Try to start server with ```docker-compose up -d``` command
     7. Once server starts successfully, commit changed files to your project.
