@@ -14,10 +14,10 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
 - If you don't have an existing project, then create a new project
     1. ```docker-machine ssh default``` (Only if you are not on Linux machine)
     2. ```cd <project-dir>```
-    3. ```docker run --rm -it -v $(pwd):/usr/share/nginx/WEBAPP rasodu/cmd:5.6.1 /bin/bash```
+    3. ```docker run --rm -it --user=$(id -u):$(id -g) -v $(pwd):/usr/share/nginx/WEBAPP rasodu/cmd:5.6.1 /bin/bash```
     4. ```laravel new [new-project-dir]``` or ```composer create-project laravel/laravel=5.1.<*|33> <.|new-project-dir>```
 - Add DLEMPFast to your project
-    1. ```docker run --rm -it -v $(pwd):/usr/share/nginx/WEBAPP rasodu/cmd:5.6.1 /bin/bash```
+    1. ```docker run --rm -it --user=$(id -u):$(id -g) -v $(pwd):/usr/share/nginx/WEBAPP rasodu/cmd:5.6.1 /bin/bash```
     1. ```composer require rasodu/services:dev-master```
     3. ```mkdir public``` If it doesn't exist
     4. ```mkdir -p docker/docker-config && cp vendor/rasodu/services/docker/docker-config/letsencrypt-cli.ini docker/docker-config/```
@@ -47,6 +47,9 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
 - ```docker-compose up -d``` : start development server
 - ```docker-compose stop``` : stop development server
 - ```docker-compose down --rmi local -v``` : remove containers, networks, local images and volumes
+
+## How do I enter cmd container?
+- ```docker exec -it --user=$(id -u):$(id -g) <your_project_name>_cmd_1 /bin/bash```
 
 ## How do I customize nginx settings?
 
