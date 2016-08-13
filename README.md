@@ -48,6 +48,9 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
 - ```docker-compose stop``` : stop development server
 - ```docker-compose down --rmi local -v``` : remove containers, networks, local images and volumes
 
+## How do I enter cmd container?
+- ```docker exec -it --user=$(id -u):$(id -g) <your_project_name>_cmd_1 /bin/bash```
+
 ## How do I customize nginx settings?
 
 ## How do I customize PHP settings?
