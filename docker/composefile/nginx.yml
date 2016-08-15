@@ -1,15 +1,5 @@
 version: '2'
 services:
-    nginxhttps:
-        build:
-            context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/nginxhttps
-        volumes_from:
-            - phpfpm:ro
-        ports:
-            - "443:443"
-        volumes:
-            - etc-letsencrypt:/etc/letsencrypt
     nginxhttp:
         image: rasodu/nginxhttp:1.10.1
         ports:

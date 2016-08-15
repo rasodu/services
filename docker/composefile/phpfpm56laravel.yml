@@ -3,7 +3,7 @@ services:
     phpfpm:
         build:
             context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/56phpfpm
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/56phpfpmlaravel
             args:
                 DLEMPFAST_CONFIG_DIR: ${DLEMPFAST_CONFIG_DIR}
         expose:

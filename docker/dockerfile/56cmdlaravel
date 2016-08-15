@@ -1,4 +1,4 @@
-FROM rasodu/cmd:5.6.1
+FROM rasodu/cmdlaravel:5.6.1
 ARG DLEMPFAST_CONFIG_DIR
 
 #start run customization script

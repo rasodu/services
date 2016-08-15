@@ -1,7 +1,7 @@
 version: '2'
 services:
-    nodesocket: #requires 'redis' service
-        image: rasodu/nodesocket:4.4.3
+    pusherlaravel: #requires 'redis' service
+        image: rasodu/pusherlaravel:4.4.3
         depends_on:
             - nginxhttps
             - redis

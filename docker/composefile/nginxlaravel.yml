@@ -1,0 +1,12 @@
+version: '2'
+services:
+    nginxhttps:
+        build:
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/nginxhttpslaravel
+        volumes_from:
+            - phpfpm:ro
+        ports:
+            - "443:443"
+        volumes:
+            - etc-letsencrypt:/etc/letsencrypt
