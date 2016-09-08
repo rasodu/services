@@ -1,5 +1,14 @@
 {
     "name": "rasodu/services",
     "description": "Quick server for Laravel",
-    "homepage": "https://github.com/rasodu/services"
+    "homepage": "https://github.com/rasodu/services",
+    "require-dev": {
+        "rasodu/dlemp": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/rasodu/DLEMP"
+        }
+    ]
 }

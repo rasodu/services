@@ -6,4 +6,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- 'rasodu/dlemp' is added as development dependency to this project
+
 ### Changed
