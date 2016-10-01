@@ -4,6 +4,8 @@ services:
         build:
             context: ${DLEMPFAST_CONTEXT}
             dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/nginxhttpslaravel
+            args:
+                DLEMPFAST_PROJECT_DIR: ${DLEMPFAST_PROJECT_DIR}
         volumes_from:
             - phpfpm:ro
         ports:

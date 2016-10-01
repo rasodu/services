@@ -1,0 +1,65 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "a34aaae732b13e1989dc04f995eeebab",
+    "content-hash": "363cae93ea516fcc16a15cfc567781d5",
+    "packages": [],
+    "packages-dev": [
+        {
+            "name": "rasodu/dlemp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rasodu/DLEMP.git",
+                "reference": "87af9bf3625c2f413f22e517f58e0bb62b6d9520"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rasodu/DLEMP/zipball/87af9bf3625c2f413f22e517f58e0bb62b6d9520",
+                "reference": "87af9bf3625c2f413f22e517f58e0bb62b6d9520",
+                "shasum": ""
+            },
+            "require-dev": {
+                "illuminate/filesystem": "~5.2",
+                "league/flysystem-aws-s3-v3": "~1.0",
+                "pda/pheanstalk": "~3.0",
+                "phpmailer/phpmailer": "~5.2",
+                "phpunit/phpunit": "~4.0",
+                "predis/predis": "~1.0",
+                "sebastian/peek-and-poke": "dev-master",
+                "symfony/process": "~3.0"
+            },
+            "type": "library",
+            "autoload-dev": {
+                "classmap": [
+                    "tests/TestCase.php"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Abhijit Amin",
+                    "email": "abhijitramin@gmail.com"
+                }
+            ],
+            "description": "LEMP server",
+            "homepage": "https://github.com/rasodu/DLEMP",
+            "support": {
+                "source": "https://github.com/rasodu/DLEMP/tree/master",
+                "issues": "https://github.com/rasodu/DLEMP/issues"
+            },
+            "time": "2016-10-01 21:43:05"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "rasodu/dlemp": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
