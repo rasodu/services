@@ -45,7 +45,17 @@ We support PHP 5.6 and 7.0
     - Once server starts successfully, commit changed files to your project.
 - Optional installation steps
     1. Add ```/public/phpunit-coverage``` and ```/public/app-documentation``` to your project's '.gitignore' : If you will be generating phpunit code coverage.
-    - Add ```elixir.config.browserSync.proxy= "https://nginxhttps";``` to 'gulpfile.js' : If you want to use browser sync.
+    - If you want to use browser sync, then add following code to 'gulpfile.js'.
+        ```javascript
+
+            mix.browserSync({
+                proxy: 'https://nginxhttps',
+                port: 3002,
+                ui: {
+                    port: 3001
+                }
+            });
+        ```
     - ```mkdir -p docker/docker-config && cp -a DLEMPFast/docker/docker-config/. docker/docker-config/``` : If you want to set custom config.
     - Set email and domain in 'letsencrypt-cli.ini' : Only if you want to use let's encrypt certificate during production for production(Optional):
 

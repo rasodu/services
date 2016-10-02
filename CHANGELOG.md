@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 ### Changed
-
+### Fixed
+- Instruction to use Browsersync are updated
 
 ## [0.2.0]
 ### Added
