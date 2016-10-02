@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- 'rasodu/dlemp' is added as development dependency to this project
+- Allow choosing specific version of MySQL
 
 ### Changed
+
+
+## [0.1.0]
+### Added
+- 'rasodu/dlemp' is added as development dependency to this project

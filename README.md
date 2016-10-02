@@ -34,6 +34,8 @@ At this point we only support PHP 5.6. We will add support for PHP 7 once we thi
 
         DLEMPFAST_PROJECT_DIR=
 
+        DLEMPFAST_MYSQL_VERSION=5.6.28
+
         COMPOSE_FILE=vendor/rasodu/services/docker/composefile/phpfpm56laravel.yml;vendor/rasodu/services/docker/composefile/phpfpm56laravel.override.yml;vendor/rasodu/services/docker/composefile/nginx.yml;vendor/rasodu/services/docker/composefile/nginxlaravel.yml
         ```
     6. Try to start server with ```docker-compose up -d``` command
