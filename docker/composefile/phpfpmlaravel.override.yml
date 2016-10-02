@@ -3,13 +3,13 @@ services:
     phpfpm:
         build:
             context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/56phpfpmdevlaravel
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/${DLEMPFAST_PHP_VERSION}phpfpmdevlaravel
         volumes:
             - ${DLEMPFAST_CONTEXT}${DLEMPFAST_PROJECT_DIR}:/usr/share/nginx/WEBAPP
     cmd:
         build:
             context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/56cmdlaravel
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/${DLEMPFAST_PHP_VERSION}cmdlaravel
             args:
                 DLEMPFAST_CONFIG_DIR: ${DLEMPFAST_CONFIG_DIR}
         ports:
