@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 
+## 0.2.3 - 2016-10-02
+### Fixed
+- Browsersync compose file fix
+
 ## 0.2.2 - 2016-10-02
 ### Fixed
 - Browsersync compose file fix
