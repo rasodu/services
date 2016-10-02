@@ -13,7 +13,7 @@ services:
             args:
                 DLEMPFAST_CONFIG_DIR: ${DLEMPFAST_CONFIG_DIR}
         ports:
-            - "3002"
-            - "3001"
+            - "3001:3001"
+            - "3001:3002"
         volumes_from:
             - phpfpm
