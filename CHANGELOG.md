@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 
+## 0.3.1 - 2016-10-02
+### Fixed
+- problem in .env file is fixed
+
+## 0.3.0 - 2016-10-02
+### Added
+- Add Elasticsearch support
+
 ## 0.2.3 - 2016-10-02
 ### Fixed
 - Browsersync compose file fix
