@@ -1,6 +1,7 @@
 version: '2'
 services:
     beanstalkd: #Also turn off: queue
-        image: kusmierz/beanstalkd:v1.10.0
+        image: rasodu/beanstalkd:${DLEMPFAST_BEANSTALKD_VERSION}
+        command: beanstalkd -p 11300 -u nobody -b /var/lib/beanstalkd
         expose:
             - "11300"
