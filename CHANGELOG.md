@@ -6,7 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+- phpfpmlaravel.prod.yml changed to phpfpmlaravel.vol.yml
 ### Added
+- beanstalkd.vol.yml file is added
+- redis.vol.yml file is added
 ### Fixed
 
 
