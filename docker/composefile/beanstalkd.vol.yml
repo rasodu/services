@@ -1,0 +1,8 @@
+version: '2'
+services:
+    beanstalkd:
+        volumes:
+            - data-beanstalkd:/var/lib/beanstalkd
+volumes:
+    data-beanstalkd:
+        driver: local
