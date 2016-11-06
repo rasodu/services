@@ -7,15 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - Use official letsencrypt image
-- phpfpmlaravel.prod.yml changed to phpfpmlaravel.vol.yml
 ### Added
 - Allow choosing specific version of Elasticsearch
-- beanstalkd.vol.yml file is added
-- redis.vol.yml file is added
 ### Fixed
 
 
 ## 0.3.1 - 2016-10-02
+### Changed
+- phpfpmlaravel.prod.yml changed to phpfpmlaravel.vol.yml
+### Added
+- beanstalkd.vol.yml file is added
+- redis.vol.yml file is added
 ### Fixed
 - problem in .env file is fixed
 
