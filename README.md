@@ -20,7 +20,7 @@ We support PHP 5.6 and 7.0
     1. ```docker run --rm -it --user=$(id -u):$(id -g) -v $(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:7.0.1 /bin/bash```
     - ```composer require rasodu/services:dev-master```
     - ```mkdir public``` If it doesn't exist
-    - ```mkdir -p docker/docker-config && cp vendor/rasodu/services/docker/docker-config/letsencrypt-cli.ini docker/docker-config/```
+    - ```mkdir -p docker/docker-config```
     - Copy ```.dockerignore``` file form ```rasodu/DLEMP``` to your project's root folder
     - In you project's '.env'(and also to '.env.example' if it exist) file create following variables list :
         ```
@@ -57,7 +57,6 @@ We support PHP 5.6 and 7.0
             });
         ```
     - ```mkdir -p docker/docker-config && cp -a DLEMPFast/docker/docker-config/. docker/docker-config/``` : If you want to set custom config.
-    - Set email and domain in 'letsencrypt-cli.ini' : Only if you want to use let's encrypt certificate during production for production(Optional):
 
 
 ## How do I start development server?

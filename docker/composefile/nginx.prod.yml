@@ -3,16 +3,17 @@ services:
     nginxhttp:
         volumes:
             - acme-challenge:/DLEMP/letsencrypt/public/.well-known/acme-challenge
-    letsencrypt:
-        build:
-            context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/letsencrypt
+    certbot:
+        image: rasodu/certbot:0.9.3
         depends_on:
             - nginxhttps
         volumes_from:
             - nginxhttp:rw
         volumes:
             - etc-letsencrypt:/etc/letsencrypt
+            - var-lib-letsencrypt:/var/lib/letsencrypt
 volumes:
     acme-challenge:
+        driver: local
+    var-lib-letsencrypt:
         driver: local
