@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - phpfpmlaravel.prod.yml changed to phpfpmlaravel.vol.yml
 ### Added
+- Allow choosing specific version of Elasticsearch
 - beanstalkd.vol.yml file is added
 - redis.vol.yml file is added
 ### Fixed

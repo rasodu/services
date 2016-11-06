@@ -1,11 +1,8 @@
 version: '2'
 services:
     elasticsearch:
-        image: elasticsearch:5.0.0
+        image: elasticsearch:${DLEMPFAST_ELASTICSEARCH_VERSION}
         expose:
             - "9200"
         ports:
             - "9200:9200"
-        environment:
-            - ES_JAVA_OPTS=-Xms1g -Xmx1g
-        command: -E bootstrap.ignore_system_bootstrap_checks=true
