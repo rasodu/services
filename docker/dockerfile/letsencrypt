@@ -1,3 +1,0 @@
-FROM rasodu/letsencrypt:0.8.3
-
-COPY docker/docker-config/letsencrypt-cli.ini /root/.config/letsencrypt/cli.ini
