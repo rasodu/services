@@ -2,6 +2,5 @@ version: '2'
 services:
     redis: #Also turn off: nodesocket
         image: redis:${DLEMPFAST_REDIS_VERSION}
-        command: redis-server --appendonly yes
         expose:
             - "6379"

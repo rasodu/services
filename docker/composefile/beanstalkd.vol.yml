@@ -1,6 +1,7 @@
 version: '2'
 services:
     beanstalkd:
+        command: beanstalkd -p 11300 -u nobody -b /var/lib/beanstalkd
         volumes:
             - data-beanstalkd:/var/lib/beanstalkd
 volumes:

@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - Use official letsencrypt image
+- Change name of files that create volumes for mysql and elasticsearch services
 ### Added
+- Allow beanstalkd and redis to operate completely from memory if docker volumes are not used.
 - Allow choosing specific version of Elasticsearch
 ### Fixed
 
