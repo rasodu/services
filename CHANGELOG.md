@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 
+## 0.6.0 - 2016-12-11
+### Changed
+- Base phpfpm images are updated.
+- Composefile name for nginx service is changed.
+### Added
+- Load balancer is added. This resulted in splitting old nginx service into two service.
+
 ## 0.5.0 - 2016-11-06
 ### Changed
 - Use official letsencrypt image
