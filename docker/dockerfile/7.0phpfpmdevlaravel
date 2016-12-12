@@ -1,4 +1,4 @@
-FROM rasodu/phpfpmdevlaravel:7.0.1
+FROM rasodu/phpfpmdevlaravel:7.0.2
 ARG DLEMPFAST_CONFIG_DIR
 ARG DLEMPFAST_PROJECT_DIR
 

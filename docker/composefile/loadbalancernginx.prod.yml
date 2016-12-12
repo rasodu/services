@@ -1,14 +1,20 @@
 version: '2'
 services:
-    nginxhttp:
+    http:
+        image: rasodu/httpnginx:1.10.1
+        ports:
+            - "80:80"
         volumes:
             - acme-challenge:/DLEMP/letsencrypt/public/.well-known/acme-challenge
+    https:
+        volumes:
+            - etc-letsencrypt:/etc/letsencrypt
     certbot:
         image: rasodu/certbot:0.9.3
         depends_on:
-            - nginxhttps
+            - https
         volumes_from:
-            - nginxhttp:rw
+            - http:rw
         volumes:
             - etc-letsencrypt:/etc/letsencrypt
             - var-lib-letsencrypt:/var/lib/letsencrypt

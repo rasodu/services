@@ -1,6 +1,6 @@
 version: '2'
 services:
-    workerlaravel:
+    worker:
         extends:
             file: phpfpmlaravel.yml
             service: phpfpm

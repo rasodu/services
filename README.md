@@ -38,7 +38,7 @@ We support PHP 5.6 and 7.0
 
         DLEMPFAST_MYSQL_VERSION=5.6.28
 
-        COMPOSE_FILE=vendor/rasodu/services/docker/composefile/phpfpmlaravel.yml;vendor/rasodu/services/docker/composefile/phpfpmlaravel.override.yml;vendor/rasodu/services/docker/composefile/nginx.yml;vendor/rasodu/services/docker/composefile/nginxlaravel.yml
+        COMPOSE_FILE=vendor/rasodu/services/docker/composefile/phpfpmlaravel.yml;vendor/rasodu/services/docker/composefile/phpfpmlaravel.override.yml;vendor/rasodu/services/docker/composefile/httpbackendlaravelnginx.yml;vendor/rasodu/services/docker/composefile/httpbackendlaravelnginx.override.yml;vendor/rasodu/services/docker/composefile/loadbalancernginx.yml
         ```
     - ```chmod 777 -R bootstrap/cache/ && chmod 777 -R storage/```
     - Try to start server with ```docker-compose up -d``` command
