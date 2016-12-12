@@ -1,4 +1,4 @@
-FROM rasodu/nginxhttpslaravel:1.10.1
+FROM rasodu/httpbackendlaravelnginx:1.10.1
 ARG DLEMPFAST_PROJECT_DIR
 
 #COPY htdocs /usr/share/nginx/html

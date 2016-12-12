@@ -1,14 +1,12 @@
 version: '2'
 services:
-    nginxhttps:
+    httpbackend:
         build:
             context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/nginxhttpslaravel
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/httpbackendlaravelnginx
             args:
                 DLEMPFAST_PROJECT_DIR: ${DLEMPFAST_PROJECT_DIR}
         volumes_from:
             - phpfpm:ro
-        ports:
-            - "443:443"
-        volumes:
-            - etc-letsencrypt:/etc/letsencrypt
+        expose:
+            - "80"
