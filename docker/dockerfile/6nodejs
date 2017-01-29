@@ -1,0 +1,6 @@
+FROM node:6.9.4
+ARG DLEMPFAST_PROJECT_DIR
+
+COPY ${DLEMPFAST_PROJECT_DIR}nodejs /usr/src/app/
+
+CMD npm start --prefix usr/src/app

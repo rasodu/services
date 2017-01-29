@@ -1,7 +1,7 @@
 version: '2'
 services:
     http:
-        image: rasodu/httpnginx:1.10.1
+        image: rasodu/httpnginx:1.10.2
         ports:
             - "80:80"
         volumes:

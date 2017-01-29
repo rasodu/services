@@ -1,0 +1,5 @@
+version: '2'
+services:
+    broadcaster:
+        ports:
+            - "6000:6001"

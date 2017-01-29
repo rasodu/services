@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a34aaae732b13e1989dc04f995eeebab",
     "content-hash": "363cae93ea516fcc16a15cfc567781d5",
     "packages": [],
     "packages-dev": [
@@ -14,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasodu/DLEMP.git",
-                "reference": "7a6e7a6f4c697a0d565b1f2bbdbf9f885b91cf9a"
+                "reference": "a730d154a4aaec2da333f9d986c5c29349d961a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasodu/DLEMP/zipball/7a6e7a6f4c697a0d565b1f2bbdbf9f885b91cf9a",
-                "reference": "7a6e7a6f4c697a0d565b1f2bbdbf9f885b91cf9a",
+                "url": "https://api.github.com/repos/rasodu/DLEMP/zipball/a730d154a4aaec2da333f9d986c5c29349d961a9",
+                "reference": "a730d154a4aaec2da333f9d986c5c29349d961a9",
                 "shasum": ""
             },
             "require-dev": {
@@ -51,7 +50,7 @@
                 "source": "https://github.com/rasodu/DLEMP/tree/master",
                 "issues": "https://github.com/rasodu/DLEMP/issues"
             },
-            "time": "2016-12-11 05:07:54"
+            "time": "2017-01-29T04:21:04+00:00"
         }
     ],
     "aliases": [],
