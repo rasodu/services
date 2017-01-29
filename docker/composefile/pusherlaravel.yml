@@ -1,11 +1,8 @@
 version: '2'
 services:
     pusher: #requires 'redis' service
-        image: rasodu/pusherlaravel:4.4.3
+        image: rasodu/pusherlaravel:4.4.4
         depends_on:
-            - https
             - redis
-        volumes:
-            - etc-letsencrypt:/etc/letsencrypt
-        ports:
-            - "3000:3000"
+        expose:
+            - "7001"

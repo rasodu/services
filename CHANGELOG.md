@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 
+## 0.7.0 - 2017-01-28
+### Changed
+- Pusher images ports are changed
+### Added
+- Laravel Echo server is Added
+- PHP 7.1 is added
+- Node.js server is added
+
 ## 0.6.0 - 2016-12-11
 ### Changed
 - Base phpfpm images are updated.

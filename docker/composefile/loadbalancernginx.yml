@@ -6,8 +6,9 @@ services:
             - httpbackend
         ports:
             - "443:443"
-            - "8080:8080"
             - "6001:6001"
+            - "7001:7001"
+            - "8080:8080"
 volumes:
     etc-letsencrypt:
         driver: local
