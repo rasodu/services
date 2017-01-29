@@ -1,11 +1,14 @@
 version: '2'
 services:
     https:
-        image: rasodu/httpsnginx:1.10.1
+        image: rasodu/httpsnginx:1.10.2
         depends_on:
             - httpbackend
         ports:
             - "443:443"
+            - "6001:6001"
+            - "7001:7001"
+            - "8080:8080"
 volumes:
     etc-letsencrypt:
         driver: local

@@ -1,0 +1,10 @@
+version: '2'
+services:
+    nodejs:
+        build:
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/6nodejs
+            args:
+                DLEMPFAST_PROJECT_DIR: ${DLEMPFAST_PROJECT_DIR}
+        expose:
+            - "8080"

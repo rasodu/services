@@ -1,0 +1,5 @@
+version: '2'
+services:
+    pusher:
+        ports:
+            - "7000:7001"
