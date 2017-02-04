@@ -3,7 +3,7 @@ services:
     nodejs:
         build:
             context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/6nodejs
+            dockerfile: ${DLEMPFAST_RASODU_NODEJS_DOCKERFILE_DIR}services/rasodu/nodejs/6nodejs
             args:
                 DLEMPFAST_PROJECT_DIR: ${DLEMPFAST_PROJECT_DIR}
         expose:

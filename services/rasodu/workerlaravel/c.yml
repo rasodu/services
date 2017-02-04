@@ -2,7 +2,7 @@ version: '2'
 services:
     worker:
         extends:
-            file: phpfpmlaravel.yml
+            file: ../phpfpmlaravel/c.yml
             service: phpfpm
         depends_on:
             - beanstalkd

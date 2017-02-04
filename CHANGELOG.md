@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 
+## 0.8.0 - 2017-02-04
+### Changed
+- Composefile location changed in the repository
+
 ## 0.7.0 - 2017-01-28
 ### Changed
 - Pusher images ports are changed

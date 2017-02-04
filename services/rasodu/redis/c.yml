@@ -1,6 +1,6 @@
 version: '2'
 services:
     redis: #Also turn off: nodesocket
-        image: redis:${DLEMPFAST_REDIS_VERSION}
+        image: redis:${DLEMPFAST_RASODU_REDIS_VERSION}
         expose:
             - "6379"

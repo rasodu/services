@@ -1,0 +1,19 @@
+version: '2'
+services:
+    phpfpm:
+        build:
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_RASODU_PHPFPMLARAVEL_DOCKERFILE_DIR}services/rasodu/phpfpmlaravel/${DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION}phpfpmdevlaravel
+        volumes:
+            - ${DLEMPFAST_CONTEXT}${DLEMPFAST_PROJECT_DIR}:/usr/share/nginx/WEBAPP
+    cmd:
+        build:
+            context: ${DLEMPFAST_CONTEXT}
+            dockerfile: ${DLEMPFAST_RASODU_PHPFPMLARAVEL_DOCKERFILE_DIR}services/rasodu/phpfpmlaravel/${DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION}cmdlaravel
+            args:
+                DLEMPFAST_RASODU_PHPFPMLARAVEL_CONFIG_DIR: ${DLEMPFAST_RASODU_PHPFPMLARAVEL_CONFIG_DIR}
+        ports:
+            - "3001:3001"
+            - "3002:3002"
+        volumes_from:
+            - phpfpm

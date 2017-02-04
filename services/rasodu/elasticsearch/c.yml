@@ -1,7 +1,7 @@
 version: '2'
 services:
     elasticsearch:
-        image: elasticsearch:${DLEMPFAST_ELASTICSEARCH_VERSION}
+        image: elasticsearch:${DLEMPFAST_RASODU_ELASTICSEARCH_VERSION}
         expose:
             - "9200"
         ports:
