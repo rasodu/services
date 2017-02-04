@@ -3,7 +3,7 @@ services:
     httpbackend:
         build:
             context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}services/dockerfile/httpbackendlaravelnginx
+            dockerfile: ${DLEMPFAST_RASODU_HTTPBACKENDLARAVELNGINX_DOCKERFILE_DIR}services/rasodu/httpbackendlaravelnginx/httpbackendlaravelnginx
             args:
                 DLEMPFAST_PROJECT_DIR: ${DLEMPFAST_PROJECT_DIR}
         volumes_from:

@@ -37,6 +37,8 @@ We support PHP 5.6 and 7.0
         DLEMPFAST_RASODU_MYSQL_VERSION=5.6.28
 
         DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION=7.0
+        DLEMPFAST_RASODU_PHPFPMLARAVEL_CONFIG_DIR=vendor/rasodu/services/
+        DLEMPFAST_RASODU_PHPFPMLARAVEL_DOCKERFILE_DIR=vendor/rasodu/services/
 
         COMPOSE_FILE=vendor/rasodu/services/services/composefile/phpfpmlaravel/c.yml;vendor/rasodu/services/services/composefile/phpfpmlaravel/c.override.yml;vendor/rasodu/services/services/composefile/httpbackendlaravelnginx/c.yml;vendor/rasodu/services/services/composefile/httpbackendlaravelnginx/c.override.yml;vendor/rasodu/services/services/composefile/loadbalancernginx/c.yml
         ```
@@ -56,7 +58,7 @@ We support PHP 5.6 and 7.0
                 }
             });
         ```
-    - ```mkdir -p services/docker-config && cp -a DLEMPFast/services/docker-config/. services/docker-config/``` : If you want to set custom config.
+    - ```mkdir -p services/rasodu/phpfpmlaravel/customization && cp -a vendor/rasodu/services/services/rasodu/phpfpmlaravel/customization/. services/rasodu/phpfpmlaravel/customization/``` : If you want to set custom config.
 
 
 ## How do I start development server?

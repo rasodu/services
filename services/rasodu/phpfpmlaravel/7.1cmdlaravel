@@ -1,8 +1,8 @@
 FROM rasodu/cmdlaravel:7.1.2
-ARG DLEMPFAST_CONFIG_DIR
+ARG DLEMPFAST_RASODU_PHPFPMLARAVEL_CONFIG_DIR
 
 #start run customization script
-COPY ${DLEMPFAST_CONFIG_DIR}services/docker-config/php-customization /DLEMP/docker-config/php-customization
+COPY ${DLEMPFAST_RASODU_PHPFPMLARAVEL_CONFIG_DIR}services/rasodu/phpfpmlaravel/customization /DLEMP/docker-config/php-customization
 RUN chmod +x /DLEMP/docker-config/php-customization/install.sh
 RUN /DLEMP/docker-config/php-customization/install.sh
 #end run customization script

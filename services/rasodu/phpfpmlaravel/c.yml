@@ -3,9 +3,9 @@ services:
     phpfpm:
         build:
             context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}services/dockerfile/${DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION}phpfpmlaravel
+            dockerfile: ${DLEMPFAST_RASODU_PHPFPMLARAVEL_DOCKERFILE_DIR}services/rasodu/phpfpmlaravel/${DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION}phpfpmlaravel
             args:
-                DLEMPFAST_CONFIG_DIR: ${DLEMPFAST_CONFIG_DIR}
+                DLEMPFAST_RASODU_PHPFPMLARAVEL_CONFIG_DIR: ${DLEMPFAST_RASODU_PHPFPMLARAVEL_CONFIG_DIR}
                 DLEMPFAST_PROJECT_DIR: ${DLEMPFAST_PROJECT_DIR}
         expose:
             - "9000"
