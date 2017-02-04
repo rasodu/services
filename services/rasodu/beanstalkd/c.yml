@@ -1,6 +1,6 @@
 version: '2'
 services:
     beanstalkd: #Also turn off: queue
-        image: rasodu/beanstalkd:${DLEMPFAST_BEANSTALKD_VERSION}
+        image: rasodu/beanstalkd:${DLEMPFAST_RASODU_BEANSTALKD_VERSION}
         expose:
             - "11300"

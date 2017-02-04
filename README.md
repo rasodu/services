@@ -34,9 +34,9 @@ We support PHP 5.6 and 7.0
 
         DLEMPFAST_PROJECT_DIR=
 
-        DLEMPFAST_PHP_VERSION=7.0
+        DLEMPFAST_RASODU_MYSQL_VERSION=5.6.28
 
-        DLEMPFAST_MYSQL_VERSION=5.6.28
+        DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION=7.0
 
         COMPOSE_FILE=vendor/rasodu/services/services/composefile/phpfpmlaravel/c.yml;vendor/rasodu/services/services/composefile/phpfpmlaravel/c.override.yml;vendor/rasodu/services/services/composefile/httpbackendlaravelnginx/c.yml;vendor/rasodu/services/services/composefile/httpbackendlaravelnginx/c.override.yml;vendor/rasodu/services/services/composefile/loadbalancernginx/c.yml
         ```
