@@ -20,7 +20,7 @@ We support PHP 5.6 and 7.0
     1. ```docker run --rm -it --user=$(id -u):$(id -g) -v $(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:7.0.1 /bin/bash```
     - ```composer require rasodu/services:dev-master```
     - ```mkdir public``` If it doesn't exist
-    - ```mkdir -p docker/docker-config```
+    - ```mkdir -p services/docker-config```
     - Copy ```.dockerignore``` file form ```rasodu/DLEMP``` to your project's root folder
     - In you project's '.env'(and also to '.env.example' if it exist) file create following variables list :
         ```
@@ -38,7 +38,7 @@ We support PHP 5.6 and 7.0
 
         DLEMPFAST_MYSQL_VERSION=5.6.28
 
-        COMPOSE_FILE=vendor/rasodu/services/docker/composefile/phpfpmlaravel.yml;vendor/rasodu/services/docker/composefile/phpfpmlaravel.override.yml;vendor/rasodu/services/docker/composefile/httpbackendlaravelnginx.yml;vendor/rasodu/services/docker/composefile/httpbackendlaravelnginx.override.yml;vendor/rasodu/services/docker/composefile/loadbalancernginx.yml
+        COMPOSE_FILE=vendor/rasodu/services/services/composefile/phpfpmlaravel/c.yml;vendor/rasodu/services/services/composefile/phpfpmlaravel/c.override.yml;vendor/rasodu/services/services/composefile/httpbackendlaravelnginx/c.yml;vendor/rasodu/services/services/composefile/httpbackendlaravelnginx/c.override.yml;vendor/rasodu/services/services/composefile/loadbalancernginx/c.yml
         ```
     - ```chmod 777 -R bootstrap/cache/ && chmod 777 -R storage/```
     - Try to start server with ```docker-compose up -d``` command
@@ -56,7 +56,7 @@ We support PHP 5.6 and 7.0
                 }
             });
         ```
-    - ```mkdir -p docker/docker-config && cp -a DLEMPFast/docker/docker-config/. docker/docker-config/``` : If you want to set custom config.
+    - ```mkdir -p services/docker-config && cp -a DLEMPFast/services/docker-config/. services/docker-config/``` : If you want to set custom config.
 
 
 ## How do I start development server?

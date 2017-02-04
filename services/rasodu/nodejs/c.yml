@@ -1,12 +1,10 @@
 version: '2'
 services:
-    httpbackend:
+    nodejs:
         build:
             context: ${DLEMPFAST_CONTEXT}
-            dockerfile: ${DLEMPFAST_BASE_DIR}docker/dockerfile/httpbackendlaravelnginx
+            dockerfile: ${DLEMPFAST_BASE_DIR}services/dockerfile/6nodejs
             args:
                 DLEMPFAST_PROJECT_DIR: ${DLEMPFAST_PROJECT_DIR}
-        volumes_from:
-            - phpfpm:ro
         expose:
-            - "80"
+            - "8080"
