@@ -1,7 +1,7 @@
 version: '2'
 services:
     mysql:
-        image: mysql:${DLEMPFAST_MYSQL_VERSION}
+        image: mysql:${DLEMPFAST_RASODU_MYSQL_VERSION}
         expose:
             - "3306"
         ports:
