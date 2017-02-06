@@ -115,3 +115,31 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml restart nginxhtt
 ```
 
 ## How do I scale my app in production?
+
+## How do I run my app in AWS ECS cluster?
+- Requirements
+    1. Docker Toolbox
+    - AWS CLI
+    - kubectl
+    - kompose
+    - Kubernetes cluster(An ECS cluster(ECS CLI) : All instance in the cluster should have AmazonEC2ContainerServiceforEC2Role policy)
+- Push images to ECR repository
+    1. ```$(aws ecr get-login)```
+    - ```docker-compose build```
+    - ```docker push <tag>:<version>``` //Push all custom images for the project: docker images | grep -i <COMPOSE_PROJECT_NAME>
+    - docker logout
+- Create final combined compose file
+    1. ```docker-compose config > compose-combined.yml```
+    - Change version number from '2.0' to '2' in compose-combined.yml
+- Run containers
+    - Kubernets cluster
+        1. Build images: ```eval $(minikube docker-env)``` and ```docker-compose build```
+        - ```kompose -f compose-combined.yml up```
+        - ```kubectl get deployments,rs,pods,services```
+        - ```kubectl expose deployment <deployment-name> --type=LoadBalancer --port=<port-number> [--target-port=<>]```
+        - ```kubectl edit svc/docker-registry ```
+        - Check service is running : ```curl http://$(minikube ip):32599/```
+    - AWS ECS cluster
+        1. Make sure cluster name and region is correct in ```cat ~/.ecs/config```
+        - ```ecs-cli compose -f compose-combined.yml up```
+        - ```ecs-cli compose -f compose-combined.yml ps```

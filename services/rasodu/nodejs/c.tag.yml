@@ -1,0 +1,4 @@
+version: '2'
+services:
+    nodejs:
+        image: ${DLEMPFAST_REPOSITORY_PREFIX}${COMPOSE_PROJECT_NAME}_nodejs:${DLEMPFAST_PROJECT_VERSION}
