@@ -140,6 +140,7 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml restart nginxhtt
         - ```kubectl edit svc/docker-registry ```
         - Check service is running : ```curl http://$(minikube ip):32599/```
     - AWS ECS cluster
-        1. Make sure cluster name and region is correct in ```cat ~/.ecs/config```
+        1. Add policy 'AmazonEC2ContainerServiceforEC2Role' in 'aws-elasticbeanstalk-ec2-role' role //this will allow EC2 instances to access EC2 Container Registry
+        - Make sure cluster name and region is correct in ```cat ~/.ecs/config```
         - ```ecs-cli compose -f compose-combined.yml up```
         - ```ecs-cli compose -f compose-combined.yml ps```

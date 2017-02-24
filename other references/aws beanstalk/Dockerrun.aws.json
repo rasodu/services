@@ -1,0 +1,94 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "memory": 32,
+            "image": "rasodu/httpnginx:1.10.2",
+            "name": "http",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 79
+                }
+            ]
+        },
+        {
+            "essential": true,
+            "memory": 128,
+            "image": "memcached:1.4.27-alpine",
+            "name": "memcached",
+            "portMappings": [
+                {
+                    "containerPort": 11211
+                }
+            ]
+        },
+        {
+            "essential": true,
+            "memory": 64,
+            "image": "rasodu/beanstalkd:v1.10.1",
+            "name": "beanstalkd",
+            "portMappings": [
+                {
+                    "containerPort": 11300
+                }
+            ]
+        },
+        {
+            "essential": true,
+            "memory": 64,
+            "image": "<httpbackendlaravelnginx>",
+            "name": "httpbackend",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80
+                }
+            ],
+            "links": [
+                "phpfpm"
+            ]
+        },
+        {
+            "essential": true,
+            "memory": 128,
+            "image": "<nodejs>",
+            "name": "nodejs",
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 8081
+                }
+            ]
+        },
+        {
+            "essential": true,
+            "memory": 128,
+            "image": "<phpfpmlaravel>",
+            "name": "phpfpm",
+            "portMappings": [
+                {
+                    "containerPort": 9000
+                }
+            ],
+            "links": [
+                "memcached",
+                "beanstalkd"
+            ]
+        },
+        {
+            "essential": true,
+            "memory": 128,
+            "image": "<phpfpmlaravel>",
+            "name": "worker",
+            "command": [ "php", "artisan", "queue:listen", "--queue=high,default,low", "--timeout=300", "--sleep=5", "--tries=3" ],
+            "links": [
+                "memcached",
+                "beanstalkd"
+            ]
+        }
+    ],
+    "family": "",
+    "volumes": []
+}
