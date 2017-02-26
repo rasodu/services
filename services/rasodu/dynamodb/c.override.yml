@@ -1,0 +1,8 @@
+version: '2'
+services:
+    dynamodb:
+        image: deangiberson/aws-dynamodb-local
+        expose:
+            - "8000"
+        ports:
+            - "8000:8000"

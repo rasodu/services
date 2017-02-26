@@ -13,15 +13,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasodu/DLEMP.git",
-                "reference": "a730d154a4aaec2da333f9d986c5c29349d961a9"
+                "reference": "53ac7150b6bb8ac78d7ca519d02f12f899ca5c19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasodu/DLEMP/zipball/a730d154a4aaec2da333f9d986c5c29349d961a9",
-                "reference": "a730d154a4aaec2da333f9d986c5c29349d961a9",
+                "url": "https://api.github.com/repos/rasodu/DLEMP/zipball/53ac7150b6bb8ac78d7ca519d02f12f899ca5c19",
+                "reference": "53ac7150b6bb8ac78d7ca519d02f12f899ca5c19",
                 "shasum": ""
             },
             "require-dev": {
+                "aws/aws-sdk-php": "~3.22",
                 "elasticsearch/elasticsearch": "2.2.2",
                 "illuminate/filesystem": "~5.2",
                 "league/flysystem-aws-s3-v3": "~1.0",
@@ -50,7 +51,7 @@
                 "source": "https://github.com/rasodu/DLEMP/tree/master",
                 "issues": "https://github.com/rasodu/DLEMP/issues"
             },
-            "time": "2017-01-29T04:21:04+00:00"
+            "time": "2017-02-26T23:34:18+00:00"
         }
     ],
     "aliases": [],
