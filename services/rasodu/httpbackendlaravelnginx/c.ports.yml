@@ -1,7 +1,5 @@
 version: '2'
 services:
     httpbackend:
-        volumes_from:
-            - phpfpm:ro
         ports:
             - "80:80"

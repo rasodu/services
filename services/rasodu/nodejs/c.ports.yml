@@ -1,0 +1,5 @@
+version: '2'
+services:
+    nodejs:
+        ports:
+            - "8081:8080"
