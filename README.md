@@ -117,30 +117,41 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml restart nginxhtt
 ## How do I scale my app in production?
 
 ## How do I run my app in AWS ECS cluster?
-- Requirements
-    1. Docker Toolbox
-    - AWS CLI
-    - kubectl
-    - kompose
-    - Kubernetes cluster(An ECS cluster(ECS CLI) : All instance in the cluster should have AmazonEC2ContainerServiceforEC2Role policy)
-- Push images to ECR repository
-    1. ```$(aws ecr get-login)```
-    - ```docker-compose build```
-    - ```docker push <tag>:<version>``` //Push all custom images for the project: docker images | grep -i <COMPOSE_PROJECT_NAME>
-    - docker logout
-- Create final combined compose file
+- Required tools
+    - Common
+        1. Docker Toolbox
+    - Environment specific
+        - AWS
+            1. AWS CLI
+        - Kubernetes
+            1. kubectl
+            - kompose
+            - Kubernetes cluster(An ECS cluster(ECS CLI) : All instance in the cluster should have AmazonEC2ContainerServiceforEC2Role policy)
+- Create final combined compose file(Only if you are using kubernetes cluster)
     1. ```docker-compose config > compose-combined.yml```
     - Change version number from '2.0' to '2' in compose-combined.yml
+- Push images to repository
+    - AWS EC2 Container Registry
+        1. ```$(aws ecr get-login)```
+        - ```docker-compose build```
+        - ```docker push <tag>:<version>``` //Push all custom images for the project: docker images | grep -i <COMPOSE_PROJECT_NAME>
+        - docker logout
+    - Google Container Registry
+        1. &lt;Needs intructions>
+- Create cluster
+    - AWS Elastic Beanstalk
+        1. Create AWS Elastic Beanstalk with Multicontainer Docker Environment with Load Balancer
+        - Add policy ```AmazonEC2ContainerServiceforEC2Role``` in ```aws-elasticbeanstalk-ec2-role``` role //this will allow EC2 instances to access EC2 Container Registry
+        - Create app specific ```Dockerrun.aws.json```
+    - Create Google Container Cluster
+        1. &lt;Needs intructions>
 - Run containers
-    - Kubernets cluster
+    - AWS Elastic Beanstalk
+        1. Lod your app specific ```Dockerrun.aws.json``` in your Elastic Beanstalk Environment
+    - Kubernets cluster(These instructions need improvement.)
         1. Build images: ```eval $(minikube docker-env)``` and ```docker-compose build```
         - ```kompose -f compose-combined.yml up```
         - ```kubectl get deployments,rs,pods,services```
         - ```kubectl expose deployment <deployment-name> --type=LoadBalancer --port=<port-number> [--target-port=<>]```
         - ```kubectl edit svc/docker-registry ```
         - Check service is running : ```curl http://$(minikube ip):32599/```
-    - AWS ECS cluster
-        1. Add policy 'AmazonEC2ContainerServiceforEC2Role' in 'aws-elasticbeanstalk-ec2-role' role //this will allow EC2 instances to access EC2 Container Registry
-        - Make sure cluster name and region is correct in ```cat ~/.ecs/config```
-        - ```ecs-cli compose -f compose-combined.yml up```
-        - ```ecs-cli compose -f compose-combined.yml ps```
