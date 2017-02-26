@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added functionality to tag images that are custom built for the project. This requires additional tags.
 ### Added
 - Added sample ```Dockerrun.aws.json```
+- Makefile is added for the project
 ### Fixed
 
 
