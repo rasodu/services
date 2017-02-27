@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+### Added
+### Fixed
+
+
+## 0.9.0 - 2017-02-26
+### Changed
 - Added functionality to tag images that are custom built for the project. This requires additional tags.
 - Path to compose file is renamed to shorten the length(From 'services/' to 'com/')
 ### Added
@@ -13,8 +19,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Makefile is added for the project
 - DynamoDB compose file is added
 - Allow choosing Memcached version
-### Fixed
-
 
 ## 0.8.0 - 2017-02-04
 ### Changed
