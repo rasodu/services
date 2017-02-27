@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - Added functionality to tag images that are custom built for the project. This requires additional tags.
+- Path to compose file is renamed to shorten the length(From 'services/' to 'com/')
 ### Added
 - Added sample ```Dockerrun.aws.json```
 - Makefile is added for the project
