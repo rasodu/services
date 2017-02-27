@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added sample ```Dockerrun.aws.json```
 - Makefile is added for the project
 - DynamoDB compose file is added
+- Allow choosing Memcached version
 ### Fixed
 
 

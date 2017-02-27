@@ -1,7 +1,7 @@
 version: '2'
 services:
     memcached:
-        image: memcached:1.4.27-alpine
+        image: memcached:${DLEMPFAST_RASODU_MEMCACHED_VERSION}
         expose:
             - "11211"
         command: memcached -p 11211 -m 64
