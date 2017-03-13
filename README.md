@@ -51,13 +51,14 @@ We support PHP 5.6 and 7.0
         ```javascript
 
             mix.browserSync({
-                proxy: 'https://nginxhttps',
+                proxy: 'https://https',
                 port: 3002,
                 ui: {
                     port: 3001
                 }
             });
         ```
+    - ```cp "vendor/rasodu/services/other references/makefiles/Makefile-Laravel" Makefile``` and configure Makefile settings for your project : If you want Makefile for your project.
     - ```mkdir -p com/rasodu/phpfpmlaravel/customization && cp -a vendor/rasodu/services/com/rasodu/phpfpmlaravel/customization/. com/rasodu/phpfpmlaravel/customization/``` : If you want to set custom config.
 
 
