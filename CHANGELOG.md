@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 
+## 0.10.0 - 2017-03-16
+### Added
+- Other references are moved to subdirectory
+- Build files are moved to subdirectory
+
 ## 0.9.0 - 2017-02-26
 ### Changed
 - Added functionality to tag images that are custom built for the project. This requires additional tags.
