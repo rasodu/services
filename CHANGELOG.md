@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 ### Added
+- Build files are moved to subdirectory
 ### Fixed
 
 

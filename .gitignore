@@ -1,4 +1,4 @@
-/vendor
+/com/rasodu/zz-build/vendor
 *.swp
 tags
 compose-combined.yml
