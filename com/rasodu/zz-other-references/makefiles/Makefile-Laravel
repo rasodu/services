@@ -1,0 +1,53 @@
+#Steps to deploy
+#1. copy this file to root of your project
+#2. select correct version of php image used to install composer dependancies by changing 'rasodu/cmdlaravel:7.0.2'
+
+include .env
+COMPOSE = docker-compose
+PHONY =
+
+#start server
+PHONY += all
+all: vendor
+	$(COMPOSE) build
+	$(COMPOSE) up -d
+
+vendor: composer.json
+	docker run --rm -it --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:7.0.2 composer install
+
+node_modules: package.json
+	$(COMPOSE) exec cmd npm install --global gulp-cli
+	$(COMPOSE) exec cmd npm install
+
+
+#interactive commands
+PHONY += enter
+enter:
+	$(COMPOSE) exec --user=$$(id -u):$$(id -g) cmd bash
+
+PHONY += enter-root
+enter-root:
+	$(COMPOSE) exec cmd bash
+
+PHONY += watch
+watch: node_modules
+	$(COMPOSE) exec --user=$$(id -u):$$(id -g) cmd gulp watch
+
+PHONY += browser
+browser:
+	firefox http://webapp.dev:3001/ https://webapp.dev:3002/
+
+
+#stop server
+PHONY += mostlyclean
+mostlyclean:
+	$(COMPOSE) down -v --rmi local
+
+PHONY += clean
+clean:
+	-$(COMPOSE) exec cmd rm -r node_modules
+	-$(COMPOSE) down -v --rmi local
+	-$(RM) -r vendor
+
+#declare the contents of the PHONY variable as phony.
+.PHONY: $(PHONY)

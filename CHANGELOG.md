@@ -7,8 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 ### Added
+- Other references are moved to subdirectory
+- Build files are moved to subdirectory
 ### Fixed
 
+
+## 0.10.0 - 2017-03-16
+### Added
+- Other references are moved to subdirectory
+- Build files are moved to subdirectory
 
 ## 0.9.0 - 2017-02-26
 ### Changed

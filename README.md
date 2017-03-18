@@ -51,13 +51,14 @@ We support PHP 5.6 and 7.0
         ```javascript
 
             mix.browserSync({
-                proxy: 'https://nginxhttps',
+                proxy: 'https://https',
                 port: 3002,
                 ui: {
                     port: 3001
                 }
             });
         ```
+    - ```cp "vendor/rasodu/services/com/rasodu/zz-other-references/makefiles/Makefile-Laravel" Makefile``` and configure Makefile settings for your project : If you want Makefile for your project.
     - ```mkdir -p com/rasodu/phpfpmlaravel/customization && cp -a vendor/rasodu/services/com/rasodu/phpfpmlaravel/customization/. com/rasodu/phpfpmlaravel/customization/``` : If you want to set custom config.
 
 
@@ -78,6 +79,44 @@ We support PHP 5.6 and 7.0
 ## How do I use FakeS3 during development?
 
 ## How do I use Xdebug?
+- Server
+    1. Server is already configure for Xdebug. No further configuration is needed.
+- Host
+    1. Web browser
+        1. Install Chrome.
+        - Install Xdebug helper extensions in Chrome.
+    - IDE(We will assume that you are using Eclipse PDT - https://wiki.eclipse.org/Debugging_using_XDebug)
+        1. Global Eclipse PDT settings
+            1. Eclipse PDT has built in support for Xdebug. No additional plugin need to be installed.
+            - Add server
+                - Windows->Preferences->PHP->Servers->New
+                    - Server
+                        - Server Name: &lt;project-name>
+                        - Base URL: https://webapp.dev
+                        - Document Root: &lt;project-folder-root-on-host>
+                    - Debugger
+                        - Debugger: XDebug
+                        - Port: 9000
+                    - Path Mapping
+                        - Path on server: /usr/share/nginx/WEBAPP
+                        - Local path(Path in File System): &lt;path-to-project-folder>
+        - Project specific Eclipse PDT settings
+            1. Set PHP Interpreter
+                - Project->Properties->PHP->Interpreter
+                    - Check: Enable project specific settings
+                    - PHP Version: &lt;select-correct-version-of-php>
+            - Select server for project
+                - Project->Properties->PHP->Debug
+                    - Check: Enable project specific settings
+                    - Server Settings
+                        - PHP Server: &lt;select-php-server>
+                    - Encoding Settings
+                        - Debug Transfer Encoding: UTF-8
+                        - Debug Output Encoding: UTF-8
+                    - Default Base URL
+                        - Base Path: /
+                        - Auto-generated Base URL: https://webapp.dev/
+                    - Uncheck: Break at First Line
 
 ## How do I generate phpunit code coverage?
 
