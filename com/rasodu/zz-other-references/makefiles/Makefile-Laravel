@@ -13,7 +13,7 @@ all: vendor
 	$(COMPOSE) up -d
 
 vendor: composer.json
-	docker run --rm -it --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:7.0.2 composer install
+	docker run --rm --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:7.0.2 composer install
 
 node_modules: package.json
 	$(COMPOSE) exec cmd npm install --global gulp-cli
@@ -35,7 +35,7 @@ watch: node_modules
 
 PHONY += browser
 browser:
-	firefox http://webapp.dev:3001/ https://webapp.dev:3002/
+	firefox http://webapp.dev:3001/ https://webapp.dev:3002/ &
 
 
 #stop server
