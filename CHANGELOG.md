@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Other references are moved to subdirectory
 - Build files are moved to subdirectory
+- Add Travis build
 ### Fixed
 
 

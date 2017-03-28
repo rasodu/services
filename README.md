@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rasodu/services.svg)](https://travis-ci.org/rasodu/services)
+
 # DLEMPFast
 Start DLEMP server with prebuilt docker images. This is much faster than building images from dockerfiles.
 
