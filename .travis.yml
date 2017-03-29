@@ -1,7 +1,12 @@
 language: c
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.11.2 TEST_PROJECT_IN_DIR=com/rasodu/zz-build
+  global:
+    - DOCKER_COMPOSE_VERSION=1.11.2
+    - TEST_PROJECT_IN_DIR=com/rasodu/zz-build
+  matrix:
+    - APP_ENV=local
+    - APP_ENV=production
 
 sudo: required
 
@@ -18,6 +23,9 @@ before_install:
 
 before_script:
   - sudo /etc/init.d/mysql stop
+  - docker --version
+  - docker-compose --version
+  - if [ ${APP_ENV} = "production" ]; then sed "0,/#COMPOSE_FILE=\.\./s//COMPOSE_FILE=../" -i com/rasodu/zz-build/.env; fi
   - make -C ${TEST_PROJECT_IN_DIR}
 
 script:
