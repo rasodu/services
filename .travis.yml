@@ -5,8 +5,12 @@ env:
     - DOCKER_COMPOSE_VERSION=1.11.2
     - TEST_PROJECT_IN_DIR=com/rasodu/zz-build
   matrix:
-    - APP_ENV=local
-    - APP_ENV=production
+    - APP_ENV=local PHP_VERSION=7.1
+    - APP_ENV=production PHP_VERSION=7.1
+    - APP_ENV=local PHP_VERSION=7.0
+    - APP_ENV=production PHP_VERSION=7.0
+    - APP_ENV=local PHP_VERSION=5.6
+    - APP_ENV=production PHP_VERSION=5.6
 
 sudo: required
 
@@ -14,8 +18,8 @@ services:
   - docker
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
+#  - sudo apt-get update
+#  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
@@ -26,6 +30,7 @@ before_script:
   - docker --version
   - docker-compose --version
   - if [ ${APP_ENV} = "production" ]; then sed "0,/#COMPOSE_FILE=\.\./s//COMPOSE_FILE=../" -i com/rasodu/zz-build/.env; fi
+  - sed "0,/DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION=7.1/s//DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION=${PHP_VERSION}/" -i com/rasodu/zz-build/.env
   - make -C ${TEST_PROJECT_IN_DIR}
 
 script:
