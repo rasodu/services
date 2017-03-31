@@ -1,3 +1,8 @@
+branches:
+  only:
+    - master
+    - releases
+
 language: c
 
 env:
