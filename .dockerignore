@@ -1,0 +1,6 @@
+#ignore git folder
+.git*
+com/rasodu/zz-build/vendor/rasodu/dlemp/git*
+
+#ignore storage folder
+com/rasodu/zz-build/vendor/rasodu/dlemp/storage/app/*
