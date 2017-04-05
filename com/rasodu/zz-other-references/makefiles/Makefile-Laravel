@@ -3,20 +3,18 @@
 #2. select correct version of php image used to install composer dependancies by changing 'rasodu/cmdlaravel:7.0.2'
 
 include .env
+CMD_TERMINAL = docker run --rm --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).2
 COMPOSE = docker-compose
 PHONY =
 
 #start server
 PHONY += up
-up: build
+up: vendor
+	$(COMPOSE) build
 	$(COMPOSE) up -d
 
-PHONY += build
-build: vendor
-	$(COMPOSE) build
-
 vendor: composer.json
-	docker run --rm --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).2 composer install
+	$(CMD_TERMINAL) composer install
 
 
 #access bash
@@ -42,8 +40,19 @@ PHONY += browser
 browser:
 	firefox http://webapp.dev:3001/ https://webapp.dev:3002/ &
 
+PHONY += clearcache
+clearcache:
+	-$(CMD_TERMINAL) php artisan config:clear
+	-$(COMPOSE) exec cmd php artisan cache:clear
+
 
 #deploy
+PHONY += build-optimize
+build-optimize:
+	$(CMD_TERMINAL) composer install --optimize-autoloader
+	$(CMD_TERMINAL) php artisan config:cache
+	$(COMPOSE) build
+
 PHONY += push
 push::
 	docker push $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
@@ -63,11 +72,11 @@ aws-docker-run-copy:
 
 #stop server
 PHONY += mostlyclean
-mostlyclean:
+mostlyclean: clearcache
 	$(COMPOSE) down -v --rmi local
 
 PHONY += clean
-clean:
+clean: clearcache
 	-$(COMPOSE) exec cmd rm -r node_modules
 	-$(COMPOSE) down -v --rmi local
 	-$(RM) -r vendor
