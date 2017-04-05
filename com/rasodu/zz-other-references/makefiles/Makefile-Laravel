@@ -7,20 +7,19 @@ COMPOSE = docker-compose
 PHONY =
 
 #start server
-PHONY += all
-all: vendor
-	$(COMPOSE) build
+PHONY += up
+up: build
 	$(COMPOSE) up -d
+
+PHONY += build
+build: vendor
+	$(COMPOSE) build
 
 vendor: composer.json
 	docker run --rm --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:7.0.2 composer install
 
-node_modules: package.json
-	$(COMPOSE) exec cmd npm install --global gulp-cli
-	$(COMPOSE) exec cmd npm install
 
-
-#interactive commands
+#access bash
 PHONY += enter
 enter:
 	$(COMPOSE) exec --user=$$(id -u):$$(id -g) cmd bash
@@ -29,9 +28,15 @@ PHONY += enter-root
 enter-root:
 	$(COMPOSE) exec cmd bash
 
+
+#laravel development
 PHONY += watch
 watch: node_modules
 	$(COMPOSE) exec --user=$$(id -u):$$(id -g) cmd gulp watch
+
+node_modules: package.json
+	$(COMPOSE) exec cmd npm install --global gulp-cli
+	$(COMPOSE) exec cmd npm install
 
 PHONY += browser
 browser:
