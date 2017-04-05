@@ -16,7 +16,7 @@ build: vendor
 	$(COMPOSE) build
 
 vendor: composer.json
-	docker run --rm --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:7.0.2 composer install
+	docker run --rm --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).2 composer install
 
 
 #access bash
