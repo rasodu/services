@@ -43,6 +43,24 @@ browser:
 	firefox http://webapp.dev:3001/ https://webapp.dev:3002/ &
 
 
+#deploy
+PHONY += push
+push::
+	docker push $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
+	docker push $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_httpbackendlaravelnginx:$(DLEMPFAST_PROJECT_VERSION)
+	#docker push $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_nodejs:$(DLEMPFAST_PROJECT_VERSION)
+
+PHONY += push-repository
+push-repository::
+	echo $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
+	echo $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_httpbackendlaravelnginx:$(DLEMPFAST_PROJECT_VERSION)
+	#$(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_nodejs:$(DLEMPFAST_PROJECT_VERSION)
+
+PHONY += aws-docker-run-copy
+aws-docker-run-copy:
+	if [ ! -f Dockerrun.aws.json ]; then cp "vendor/rasodu/services/other references/aws beanstalk/Dockerrun.aws.json" Dockerrun.aws.json; fi
+
+
 #stop server
 PHONY += mostlyclean
 mostlyclean:
