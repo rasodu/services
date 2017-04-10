@@ -39,6 +39,10 @@ PHONY += browser
 browser:
 	firefox http://webapp.dev:3001/ https://webapp.dev:3002/ &
 
+PHONY += watch-log
+watch-log:
+	watch -n1 docker logs --tail 20 $(COMPOSE_PROJECT_NAME)_phpfpm_1
+
 PHONY += clearcache
 clearcache:
 	-$(CMD_TERMINAL) php artisan config:clear
