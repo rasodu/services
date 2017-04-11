@@ -1,4 +1,0 @@
-version: '2'
-services:
-    phpfpm:
-        image: ${DLEMPFAST_REPOSITORY_PREFIX}${COMPOSE_PROJECT_NAME}_phpfpmlaravel:${DLEMPFAST_PROJECT_VERSION}

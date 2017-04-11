@@ -4,6 +4,7 @@
 include .env
 CONTAINER_ACCESS_USER= --user=$$(id -u):$$(id -g)
 CMD_TERMINAL = docker run --rm $(CONTAINER_ACCESS_USER) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).2
+CMD_TERMINAL_ROOT = docker run --rm -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).2
 COMPOSE = docker-compose
 PHONY =
 
@@ -51,17 +52,34 @@ clearcache:
 
 
 #deploy
-PHONY += build-optimize
-build-optimize:
-	$(CMD_TERMINAL) composer install --optimize-autoloader
-	$(CMD_TERMINAL) php artisan config:cache
+PHONY += build-production
+build-production:
+	$(CMD_TERMINAL) /bin/bash -c "composer install --no-dev --optimize-autoloader; php artisan config:cache;"
+	$(CMD_TERMINAL_ROOT) /bin/bash -c "npm install --global gulp-cli; npm install; gulp --production; rm -r node_modules;"
 	$(COMPOSE) build
+	$(COMPOSE) up -d
+
+build-production-stop:
+	-$(COMPOSE) down -v --rmi local
+	-$(RM) -r vendor
+
+PHONY += tag
+tag::
+	docker tag $(COMPOSE_PROJECT_NAME)_phpfpm $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
+	docker tag $(COMPOSE_PROJECT_NAME)_httpbackend $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_httpbackendlaravelnginx:$(DLEMPFAST_PROJECT_VERSION)
+	#docker tag $(COMPOSE_PROJECT_NAME)_nodejs $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_nodejs:$(DLEMPFAST_PROJECT_VERSION)
 
 PHONY += push
 push::
 	docker push $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
 	docker push $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_httpbackendlaravelnginx:$(DLEMPFAST_PROJECT_VERSION)
 	#docker push $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_nodejs:$(DLEMPFAST_PROJECT_VERSION)
+
+PHONY += untag
+untag::
+	docker rmi $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
+	docker rmi $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_httpbackendlaravelnginx:$(DLEMPFAST_PROJECT_VERSION)
+	#docker rmi $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_nodejs:$(DLEMPFAST_PROJECT_VERSION)
 
 PHONY += push-repository
 push-repository::
@@ -76,11 +94,11 @@ aws-docker-run-copy:
 
 #stop server
 PHONY += mostlyclean
-mostlyclean: clearcache
+mostlyclean:
 	$(COMPOSE) down -v --rmi local
 
 PHONY += clean
-clean: clearcache
+clean:
 	-$(COMPOSE) exec cmd rm -r node_modules
 	-$(COMPOSE) down -v --rmi local
 	-$(RM) -r vendor
