@@ -8,7 +8,8 @@ CMD_TERMINAL_ROOT = docker run --rm -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cm
 COMPOSE = docker-compose
 PHONY =
 
-#start server
+#server
+	#start server
 PHONY += up
 up: vendor
 	$(COMPOSE) build
@@ -17,8 +18,7 @@ up: vendor
 vendor: composer.json
 	$(CMD_TERMINAL) composer install
 
-
-#access bash
+	#access server bash
 PHONY += enter
 enter:
 	$(COMPOSE) exec $(CONTAINER_ACCESS_USER) cmd bash
@@ -26,6 +26,17 @@ enter:
 PHONY += enter-root
 enter-root:
 	$(COMPOSE) exec cmd bash
+
+	#stop server
+PHONY += mostlyclean
+mostlyclean:
+	$(COMPOSE) down -v --rmi local
+
+PHONY += clean
+clean:
+	-$(COMPOSE) exec cmd rm -r node_modules
+	-$(COMPOSE) down -v --rmi local
+	-$(RM) -r vendor
 
 
 #laravel development
@@ -91,17 +102,6 @@ PHONY += aws-docker-run-copy
 aws-docker-run-copy:
 	if [ ! -f Dockerrun.aws.json ]; then cp "vendor/rasodu/services/other references/aws beanstalk/Dockerrun.aws.json" Dockerrun.aws.json; fi
 
-
-#stop server
-PHONY += mostlyclean
-mostlyclean:
-	$(COMPOSE) down -v --rmi local
-
-PHONY += clean
-clean:
-	-$(COMPOSE) exec cmd rm -r node_modules
-	-$(COMPOSE) down -v --rmi local
-	-$(RM) -r vendor
 
 #declare the contents of the PHONY variable as phony.
 .PHONY: $(PHONY)
