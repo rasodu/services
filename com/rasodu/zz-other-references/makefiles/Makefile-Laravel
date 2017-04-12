@@ -8,7 +8,7 @@ CMD_TERMINAL_ROOT = docker run --rm -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cm
 COMPOSE = docker-compose
 PHONY =
 
-#server
+#development
 	#start server
 PHONY += up
 up: vendor
@@ -39,7 +39,7 @@ clean:
 	-$(RM) -r vendor
 
 
-#laravel development
+#laravel development(when server is running)
 PHONY += watch
 watch: node_modules
 	$(COMPOSE) exec $(CONTAINER_ACCESS_USER) cmd gulp watch
@@ -62,18 +62,29 @@ clearcache:
 	-$(COMPOSE) exec cmd php artisan cache:clear
 
 
-#deploy
-PHONY += build-production
-build-production:
+#production
+PHONY += production-uncomment-composefile
+production-uncomment-composefile:
+	sed "0,/#COMPOSE_FILE=/s//COMPOSE_FILE=/" -i .env
+
+PHONY += production-build-and-start
+production-build-and-start:
 	$(CMD_TERMINAL) /bin/bash -c "composer install --no-dev --optimize-autoloader; php artisan config:cache;"
 	$(CMD_TERMINAL_ROOT) /bin/bash -c "npm install --global gulp-cli; npm install; gulp --production; rm -r node_modules;"
 	$(COMPOSE) build
 	$(COMPOSE) up -d
 
-build-production-stop:
+PHONY += production-stop
+production-stop:
+	-$(COMPOSE) down
+
+PHONY += production-clean
+production-clean:
 	-$(COMPOSE) down -v --rmi local
 	-$(RM) -r vendor
 
+
+#docker images
 PHONY += tag
 tag::
 	docker tag $(COMPOSE_PROJECT_NAME)_phpfpm $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
