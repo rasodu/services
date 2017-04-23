@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 ### Added
+### Fixed
+
+
+## 0.11.0 - 2017-04-23
+### Added
+- Improve PHPFPM PM settings in base image
 - Other references are moved to subdirectory
 - Build files are moved to subdirectory
 - Add Travis build
-### Fixed
-
 
 ## 0.10.0 - 2017-03-16
 ### Added

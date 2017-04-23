@@ -2,7 +2,7 @@
 include .env
 COMPOSE = docker-compose
 PHONY =
-PHPFPMLARAVEL_IMAGE = rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).2
+PHPFPMLARAVEL_IMAGE = rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).3
 
 PHONY += all
 all: vendor/rasodu/dlemp/vendor node_modules

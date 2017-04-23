@@ -3,8 +3,8 @@
 
 include .env
 CONTAINER_ACCESS_USER= --user=$$(id -u):$$(id -g)
-CMD_TERMINAL = docker run --rm $(CONTAINER_ACCESS_USER) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).2
-CMD_TERMINAL_ROOT = docker run --rm -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).2
+CMD_TERMINAL = docker run --rm $(CONTAINER_ACCESS_USER) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).3
+CMD_TERMINAL_ROOT = docker run --rm -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).3
 COMPOSE = docker-compose
 PHONY =
 
