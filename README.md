@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rasodu/services.svg)](https://travis-ci.org/rasodu/services)
+
 # DLEMPFast
 Start DLEMP server with prebuilt docker images. This is much faster than building images from dockerfiles.
 
@@ -60,6 +62,7 @@ We support PHP 5.6 and 7.0
         ```
     - ```cp "vendor/rasodu/services/com/rasodu/zz-other-references/makefiles/Makefile-Laravel" Makefile``` and configure Makefile settings for your project : If you want Makefile for your project.
     - ```mkdir -p com/rasodu/phpfpmlaravel/customization && cp -a vendor/rasodu/services/com/rasodu/phpfpmlaravel/customization/. com/rasodu/phpfpmlaravel/customization/``` : If you want to set custom config.
+    - Add 'APP_LOG=errorlog' to .env and .env-example
 
 
 ## How do I start development server?

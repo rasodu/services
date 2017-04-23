@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rasodu/DLEMP.git",
-                "reference": "91a975a57d4acd4f8df724007b5fe064007b450c"
+                "reference": "c6266164d2c1ffa20de7406ce286eb8d0e5c9092"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rasodu/DLEMP/zipball/91a975a57d4acd4f8df724007b5fe064007b450c",
-                "reference": "91a975a57d4acd4f8df724007b5fe064007b450c",
+                "url": "https://api.github.com/repos/rasodu/DLEMP/zipball/c6266164d2c1ffa20de7406ce286eb8d0e5c9092",
+                "reference": "c6266164d2c1ffa20de7406ce286eb8d0e5c9092",
                 "shasum": ""
             },
             "require-dev": {
@@ -51,7 +51,7 @@
                 "source": "https://github.com/rasodu/DLEMP/tree/master",
                 "issues": "https://github.com/rasodu/DLEMP/issues"
             },
-            "time": "2017-03-12T06:22:30+00:00"
+            "time": "2017-04-23T17:59:55+00:00"
         }
     ],
     "aliases": [],

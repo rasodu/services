@@ -2,7 +2,7 @@
 include .env
 COMPOSE = docker-compose
 PHONY =
-PHPFPMLARAVEL_IMAGE = rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).2
+PHPFPMLARAVEL_IMAGE = rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).3
 
 PHONY += all
 all: vendor/rasodu/dlemp/vendor node_modules
@@ -10,10 +10,10 @@ all: vendor/rasodu/dlemp/vendor node_modules
 	$(COMPOSE) up -d
 
 vendor/rasodu/dlemp/vendor: vendor vendor/rasodu/dlemp/composer.json
-	docker run --rm -it --user=$$(id -u):$$(id -g) -v $$(pwd)/vendor/rasodu/dlemp:/usr/share/nginx/WEBAPP $(PHPFPMLARAVEL_IMAGE) composer install
+	docker run --rm --user=$$(id -u):$$(id -g) -v $$(pwd)/vendor/rasodu/dlemp:/usr/share/nginx/WEBAPP $(PHPFPMLARAVEL_IMAGE) composer install
 
 vendor: composer.json
-	docker run --rm -it --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP $(PHPFPMLARAVEL_IMAGE) composer install
+	docker run --rm --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP $(PHPFPMLARAVEL_IMAGE) composer install
 
 node_modules: package.json
 	-npm install

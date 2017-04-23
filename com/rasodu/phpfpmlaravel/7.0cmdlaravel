@@ -1,4 +1,4 @@
-FROM rasodu/cmdlaravel:7.0.2
+FROM rasodu/cmdlaravel:7.0.3
 ARG DLEMPFAST_RASODU_PHPFPMLARAVEL_CONFIG_DIR
 
 #start run customization script

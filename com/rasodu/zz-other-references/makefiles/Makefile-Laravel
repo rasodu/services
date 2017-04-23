@@ -1,44 +1,33 @@
 #Steps to deploy
-#1. copy this file to root of your project
-#2. select correct version of php image used to install composer dependancies by changing 'rasodu/cmdlaravel:7.0.2'
+#1. Create new Makefile and include out standard Makefile in the new Makefile: 'include vendor/rasodu/services/com/rasodu/zz-other-references/makefiles/Makefile-Laravel' > Makefile
 
 include .env
+CONTAINER_ACCESS_USER= --user=$$(id -u):$$(id -g)
+CMD_TERMINAL = docker run --rm $(CONTAINER_ACCESS_USER) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).3
+CMD_TERMINAL_ROOT = docker run --rm -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:$(DLEMPFAST_RASODU_PHPFPMLARAVEL_VERSION).3
 COMPOSE = docker-compose
 PHONY =
 
-#start server
-PHONY += all
-all: vendor
+#development
+	#start server
+PHONY += up
+up: vendor
 	$(COMPOSE) build
 	$(COMPOSE) up -d
 
 vendor: composer.json
-	docker run --rm -it --user=$$(id -u):$$(id -g) -v $$(pwd):/usr/share/nginx/WEBAPP rasodu/cmdlaravel:7.0.2 composer install
+	$(CMD_TERMINAL) composer install
 
-node_modules: package.json
-	$(COMPOSE) exec cmd npm install --global gulp-cli
-	$(COMPOSE) exec cmd npm install
-
-
-#interactive commands
+	#access server bash
 PHONY += enter
 enter:
-	$(COMPOSE) exec --user=$$(id -u):$$(id -g) cmd bash
+	$(COMPOSE) exec $(CONTAINER_ACCESS_USER) cmd bash
 
 PHONY += enter-root
 enter-root:
 	$(COMPOSE) exec cmd bash
 
-PHONY += watch
-watch: node_modules
-	$(COMPOSE) exec --user=$$(id -u):$$(id -g) cmd gulp watch
-
-PHONY += browser
-browser:
-	firefox http://webapp.dev:3001/ https://webapp.dev:3002/
-
-
-#stop server
+	#stop server
 PHONY += mostlyclean
 mostlyclean:
 	$(COMPOSE) down -v --rmi local
@@ -48,6 +37,82 @@ clean:
 	-$(COMPOSE) exec cmd rm -r node_modules
 	-$(COMPOSE) down -v --rmi local
 	-$(RM) -r vendor
+
+
+#laravel development(when server is running)
+PHONY += watch
+watch: node_modules
+	$(COMPOSE) exec $(CONTAINER_ACCESS_USER) cmd gulp watch
+
+node_modules: package.json
+	$(COMPOSE) exec cmd npm install --global gulp-cli
+	$(COMPOSE) exec cmd npm install
+
+PHONY += browser
+browser:
+	firefox http://webapp.dev:3001/ https://webapp.dev:3002/ &
+
+PHONY += watch-log
+watch-log:
+	watch -n1 docker logs --tail 20 $(COMPOSE_PROJECT_NAME)_phpfpm_1
+
+PHONY += clearcache
+clearcache:
+	-$(CMD_TERMINAL) php artisan config:clear
+	-$(COMPOSE) exec cmd php artisan cache:clear
+
+
+#production
+PHONY += production-uncomment-composefile
+production-uncomment-composefile:
+	sed "0,/#COMPOSE_FILE=/s//COMPOSE_FILE=/" -i .env
+
+PHONY += production-build-and-start
+production-build-and-start:
+	$(CMD_TERMINAL) /bin/bash -c "composer install --no-dev --optimize-autoloader; php artisan config:cache;"
+	$(CMD_TERMINAL_ROOT) /bin/bash -c "npm install --global gulp-cli; npm install; gulp --production; rm -r node_modules;"
+	$(COMPOSE) build
+	$(COMPOSE) up -d
+
+PHONY += production-stop
+production-stop:
+	-$(COMPOSE) down
+
+PHONY += production-clean
+production-clean:
+	-$(COMPOSE) down -v --rmi local
+	-$(RM) -r vendor
+
+
+#docker images
+PHONY += tag
+tag::
+	docker tag $(COMPOSE_PROJECT_NAME)_phpfpm $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
+	docker tag $(COMPOSE_PROJECT_NAME)_httpbackend $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_httpbackendlaravelnginx:$(DLEMPFAST_PROJECT_VERSION)
+	#docker tag $(COMPOSE_PROJECT_NAME)_nodejs $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_nodejs:$(DLEMPFAST_PROJECT_VERSION)
+
+PHONY += push
+push::
+	docker push $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
+	docker push $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_httpbackendlaravelnginx:$(DLEMPFAST_PROJECT_VERSION)
+	#docker push $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_nodejs:$(DLEMPFAST_PROJECT_VERSION)
+
+PHONY += untag
+untag::
+	docker rmi $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
+	docker rmi $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_httpbackendlaravelnginx:$(DLEMPFAST_PROJECT_VERSION)
+	#docker rmi $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_nodejs:$(DLEMPFAST_PROJECT_VERSION)
+
+PHONY += push-repository
+push-repository::
+	echo $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_phpfpmlaravel:$(DLEMPFAST_PROJECT_VERSION)
+	echo $(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_httpbackendlaravelnginx:$(DLEMPFAST_PROJECT_VERSION)
+	#$(DLEMPFAST_REPOSITORY_PREFIX)$(COMPOSE_PROJECT_NAME)_nodejs:$(DLEMPFAST_PROJECT_VERSION)
+
+PHONY += aws-docker-run-copy
+aws-docker-run-copy:
+	if [ ! -f Dockerrun.aws.json ]; then cp "vendor/rasodu/services/other references/aws beanstalk/Dockerrun.aws.json" Dockerrun.aws.json; fi
+
 
 #declare the contents of the PHONY variable as phony.
 .PHONY: $(PHONY)
